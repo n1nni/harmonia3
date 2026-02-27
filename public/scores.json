@@ -1,0 +1,3246 @@
+{
+	"score-partwise": {
+		"identification": {
+			"encoding": {
+				"software": "Finale v27.3 for Windows",
+				"encoding-date": "2026-02-26",
+				"supports": [
+					{
+						"_attribute": "new-system",
+						"_element": "print",
+						"_type": "yes",
+						"_value": "yes"
+					},
+					{
+						"_attribute": "new-page",
+						"_element": "print",
+						"_type": "yes",
+						"_value": "yes"
+					},
+					{
+						"_element": "accidental",
+						"_type": "yes"
+					},
+					{
+						"_element": "beam",
+						"_type": "yes"
+					},
+					{
+						"_element": "stem",
+						"_type": "yes"
+					}
+				]
+			}
+		},
+		"defaults": {
+			"scaling": {
+				"millimeters": "6.1807",
+				"tenths": "40"
+			},
+			"page-layout": {
+				"page-height": "1922",
+				"page-width": "1365",
+				"page-margins": {
+					"left-margin": "130",
+					"right-margin": "130",
+					"top-margin": "97",
+					"bottom-margin": "97",
+					"_type": "both"
+				}
+			},
+			"system-layout": {
+				"system-margins": {
+					"left-margin": "0",
+					"right-margin": "0"
+				},
+				"system-distance": "109",
+				"top-system-distance": "109"
+			},
+			"staff-layout": {
+				"staff-distance": "82"
+			},
+			"appearance": {
+				"line-width": [
+					{
+						"_type": "stem",
+						"__text": "1.4193"
+					},
+					{
+						"_type": "beam",
+						"__text": "5.0391"
+					},
+					{
+						"_type": "staff",
+						"__text": "1.4193"
+					},
+					{
+						"_type": "light barline",
+						"__text": "1.4193"
+					},
+					{
+						"_type": "heavy barline",
+						"__text": "5"
+					},
+					{
+						"_type": "leger",
+						"__text": "1.4193"
+					},
+					{
+						"_type": "ending",
+						"__text": "1.4193"
+					},
+					{
+						"_type": "wedge",
+						"__text": "0.7227"
+					},
+					{
+						"_type": "enclosure",
+						"__text": "1.4193"
+					},
+					{
+						"_type": "tuplet bracket",
+						"__text": "1.4193"
+					}
+				],
+				"note-size": [
+					{
+						"_type": "grace",
+						"__text": "50"
+					},
+					{
+						"_type": "cue",
+						"__text": "50"
+					}
+				],
+				"distance": [
+					{
+						"_type": "hyphen",
+						"__text": "141.6667"
+					},
+					{
+						"_type": "beam",
+						"__text": "7.5"
+					}
+				]
+			},
+			"music-font": {
+				"_font-family": "Petrucci,engraved",
+				"_font-size": "17.5"
+			},
+			"word-font": {
+				"_font-family": "Veshapo Kolhety N",
+				"_font-size": "10.2",
+				"_font-weight": "bold"
+			},
+			"lyric-font": {
+				"_font-family": "Veshapo Kolhety N",
+				"_font-size": "9.5",
+				"_font-weight": "bold"
+			}
+		},
+		"credit": [
+			{
+				"credit-words": [
+					{
+						"_default-x": "683",
+						"_default-y": "1825",
+						"_font-size": "16.1",
+						"_font-weight": "bold",
+						"_justify": "center",
+						"_valign": "top",
+						"__text": "is polla"
+					},
+					{
+						"_font-family": "LitNusx",
+						"_font-size": "16.1",
+						"_font-weight": "bold"
+					},
+					{
+						"_font-family": "Arial",
+						"_font-size": "14.6",
+						"_font-weight": "normal",
+						"__text": "Eis pollá"
+					}
+				],
+				"_page": "1"
+			},
+			{
+				"credit-words": {
+					"_default-x": "549",
+					"_default-y": "1825",
+					"_font-size": "16.1",
+					"_font-weight": "bold",
+					"_valign": "top",
+					"__text": "1."
+				},
+				"_page": "1"
+			}
+		],
+		"part-list": {
+			"part-group": [
+				{
+					"group-symbol": {
+						"_default-x": "-8",
+						"__text": "bracket"
+					},
+					"group-barline": "yes",
+					"_number": "1",
+					"_type": "start"
+				},
+				{
+					"_number": "1",
+					"_type": "stop"
+				}
+			],
+			"score-part": [
+				{
+					"part-name": {
+						"_print-object": "no",
+						"__text": "MusicXML Part"
+					},
+					"group": "score",
+					"score-instrument": {
+						"instrument-name": "Clarinet",
+						"_id": "P1-I3"
+					},
+					"midi-instrument": {
+						"midi-channel": "1",
+						"midi-program": "72",
+						"volume": "80",
+						"pan": "0",
+						"_id": "P1-I3"
+					},
+					"_id": "P1"
+				},
+				{
+					"part-name": {
+						"_print-object": "no",
+						"__text": "MusicXML Part"
+					},
+					"group": "score",
+					"score-instrument": {
+						"instrument-name": "Clarinet 2",
+						"_id": "P2-I17"
+					},
+					"midi-instrument": {
+						"midi-channel": "2",
+						"midi-program": "72",
+						"volume": "80",
+						"pan": "0",
+						"_id": "P2-I17"
+					},
+					"_id": "P2"
+				},
+				{
+					"part-name": {
+						"_print-object": "no",
+						"__text": "MusicXML Part"
+					},
+					"group": "score",
+					"score-instrument": {
+						"instrument-name": "Clarinet 3",
+						"_id": "P3-I18"
+					},
+					"midi-instrument": {
+						"midi-channel": "3",
+						"midi-program": "72",
+						"volume": "80",
+						"pan": "0",
+						"_id": "P3-I18"
+					},
+					"_id": "P3"
+				}
+			]
+		},
+		"part": [
+			{
+				"measure": [
+					{
+						"print": {
+							"system-layout": {
+								"top-system-distance": "236"
+							},
+							"measure-numbering": "none"
+						},
+						"attributes": {
+							"divisions": "12",
+							"key": {
+								"fifths": "-2",
+								"mode": "major"
+							},
+							"time": {
+								"senza-misura": "",
+								"_print-object": "no"
+							},
+							"clef": {
+								"sign": "G",
+								"line": "2",
+								"clef-octave-change": "-1"
+							}
+						},
+						"sound": {
+							"_tempo": "100"
+						},
+						"direction": {
+							"direction-type": {
+								"words": [
+									{
+										"_default-x": "48",
+										"_default-y": "41",
+										"_font-weight": "bold",
+										"__text": "SuaTana moZraobiT -"
+									},
+									{
+										"_font-family": "Arial",
+										"__text": "Andante"
+									}
+								]
+							},
+							"_placement": "above"
+						},
+						"note": [
+							{
+								"pitch": {
+									"step": "B",
+									"alter": "-1",
+									"octave": "3"
+								},
+								"duration": "6",
+								"voice": "1",
+								"type": "eighth",
+								"stem": {
+									"_default-y": "-52.5",
+									"__text": "down"
+								},
+								"lyric": {
+									"syllabic": "single",
+									"text": {
+										"_font-weight": "bold",
+										"__text": "is"
+									},
+									"_default-y": "-80",
+									"_number": "1"
+								},
+								"_default-x": "99"
+							},
+							{
+								"pitch": {
+									"step": "B",
+									"alter": "-1",
+									"octave": "3"
+								},
+								"duration": "6",
+								"voice": "1",
+								"type": "eighth",
+								"stem": {
+									"_default-y": "-52.5",
+									"__text": "down"
+								},
+								"lyric": {
+									"syllabic": "begin",
+									"text": {
+										"_font-weight": "bold",
+										"__text": "po"
+									},
+									"_default-y": "-80",
+									"_number": "1"
+								},
+								"_default-x": "139"
+							},
+							{
+								"pitch": {
+									"step": "B",
+									"alter": "-1",
+									"octave": "3"
+								},
+								"duration": "24",
+								"voice": "1",
+								"type": "half",
+								"stem": {
+									"_default-y": "-52.5",
+									"__text": "down"
+								},
+								"notations": {
+									"slur": {
+										"_bezier-x": "12",
+										"_bezier-y": "12",
+										"_default-x": "6",
+										"_default-y": "-7",
+										"_number": "1",
+										"_placement": "above",
+										"_type": "start"
+									}
+								},
+								"lyric": {
+									"syllabic": "end",
+									"text": {
+										"_font-weight": "bold",
+										"__text": "lla"
+									},
+									"_default-y": "-80",
+									"_number": "1"
+								},
+								"_default-x": "184"
+							},
+							{
+								"pitch": {
+									"step": "G",
+									"octave": "3"
+								},
+								"duration": "12",
+								"voice": "1",
+								"type": "quarter",
+								"stem": {
+									"_default-y": "3",
+									"__text": "up"
+								},
+								"notations": {
+									"slur": {
+										"_bezier-x": "-12",
+										"_bezier-y": "12",
+										"_default-x": "6",
+										"_default-y": "-7",
+										"_number": "1",
+										"_type": "stop"
+									}
+								},
+								"_default-x": "253"
+							}
+						],
+						"barline": {
+							"bar-style": "none",
+							"_location": "right"
+						},
+						"_number": "1",
+						"_width": "292"
+					},
+					{
+						"note": [
+							{
+								"pitch": {
+									"step": "A",
+									"octave": "3"
+								},
+								"duration": "24",
+								"voice": "1",
+								"type": "half",
+								"stem": {
+									"_default-y": "8",
+									"__text": "up"
+								},
+								"lyric": {
+									"syllabic": "begin",
+									"text": {
+										"_font-weight": "bold",
+										"__text": "e"
+									},
+									"_default-y": "-80",
+									"_number": "1"
+								},
+								"_default-x": "14"
+							},
+							{
+								"pitch": {
+									"step": "B",
+									"alter": "-1",
+									"octave": "3"
+								},
+								"duration": "24",
+								"voice": "1",
+								"type": "half",
+								"stem": {
+									"_default-y": "-52.5",
+									"__text": "down"
+								},
+								"lyric": {
+									"syllabic": "end",
+									"text": {
+										"_font-weight": "bold",
+										"__text": "ti"
+									},
+									"_default-y": "-80",
+									"_number": "1"
+								},
+								"_default-x": "100"
+							}
+						],
+						"barline": {
+							"bar-style": "none",
+							"_location": "right"
+						},
+						"_number": "2",
+						"_width": "226"
+					},
+					{
+						"note": [
+							{
+								"pitch": {
+									"step": "C",
+									"octave": "4"
+								},
+								"duration": "12",
+								"voice": "1",
+								"type": "quarter",
+								"stem": {
+									"_default-y": "-48",
+									"__text": "down"
+								},
+								"notations": {
+									"slur": {
+										"_bezier-x": "43",
+										"_bezier-y": "23",
+										"_default-x": "6",
+										"_default-y": "3",
+										"_number": "1",
+										"_placement": "above",
+										"_type": "start"
+									}
+								},
+								"lyric": {
+									"syllabic": "begin",
+									"text": {
+										"_font-weight": "bold",
+										"__text": "de"
+									},
+									"_default-y": "-80",
+									"_number": "1"
+								},
+								"_default-x": "22"
+							},
+							{
+								"pitch": {
+									"step": "A",
+									"octave": "3"
+								},
+								"duration": "4",
+								"voice": "1",
+								"type": "eighth",
+								"time-modification": {
+									"actual-notes": "3",
+									"normal-notes": "2"
+								},
+								"stem": {
+									"_default-y": "8",
+									"__text": "up"
+								},
+								"beam": {
+									"_number": "1",
+									"__text": "begin"
+								},
+								"notations": {
+									"tuplet": {
+										"_bracket": "yes",
+										"_number": "1",
+										"_placement": "above",
+										"_type": "start"
+									}
+								},
+								"_default-x": "72"
+							},
+							{
+								"pitch": {
+									"step": "G",
+									"octave": "3"
+								},
+								"duration": "4",
+								"voice": "1",
+								"type": "eighth",
+								"time-modification": {
+									"actual-notes": "3",
+									"normal-notes": "2"
+								},
+								"stem": {
+									"_default-y": "3",
+									"__text": "up"
+								},
+								"beam": {
+									"_number": "1",
+									"__text": "continue"
+								},
+								"_default-x": "102"
+							},
+							{
+								"pitch": {
+									"step": "F",
+									"octave": "3"
+								},
+								"duration": "4",
+								"voice": "1",
+								"type": "eighth",
+								"time-modification": {
+									"actual-notes": "3",
+									"normal-notes": "2"
+								},
+								"stem": {
+									"_default-y": "-2",
+									"__text": "up"
+								},
+								"beam": {
+									"_number": "1",
+									"__text": "end"
+								},
+								"notations": {
+									"tuplet": {
+										"_number": "1",
+										"_type": "stop"
+									}
+								},
+								"_default-x": "130"
+							},
+							{
+								"pitch": {
+									"step": "G",
+									"octave": "3"
+								},
+								"duration": "12",
+								"voice": "1",
+								"type": "quarter",
+								"stem": {
+									"_default-y": "3",
+									"__text": "up"
+								},
+								"_default-x": "163"
+							},
+							{
+								"pitch": {
+									"step": "E",
+									"alter": "-1",
+									"octave": "3"
+								},
+								"duration": "4",
+								"voice": "1",
+								"type": "eighth",
+								"time-modification": {
+									"actual-notes": "3",
+									"normal-notes": "2"
+								},
+								"stem": {
+									"_default-y": "-7",
+									"__text": "up"
+								},
+								"beam": {
+									"_number": "1",
+									"__text": "begin"
+								},
+								"notations": {
+									"tuplet": {
+										"_bracket": "yes",
+										"_number": "1",
+										"_placement": "above",
+										"_type": "start"
+									}
+								},
+								"_default-x": "209"
+							},
+							{
+								"pitch": {
+									"step": "D",
+									"octave": "3"
+								},
+								"duration": "4",
+								"voice": "1",
+								"type": "eighth",
+								"time-modification": {
+									"actual-notes": "3",
+									"normal-notes": "2"
+								},
+								"stem": {
+									"_default-y": "-12",
+									"__text": "up"
+								},
+								"beam": {
+									"_number": "1",
+									"__text": "continue"
+								},
+								"_default-x": "237"
+							},
+							{
+								"pitch": {
+									"step": "C",
+									"octave": "3"
+								},
+								"duration": "4",
+								"voice": "1",
+								"type": "eighth",
+								"time-modification": {
+									"actual-notes": "3",
+									"normal-notes": "2"
+								},
+								"stem": {
+									"_default-y": "-17",
+									"__text": "up"
+								},
+								"beam": {
+									"_number": "1",
+									"__text": "end"
+								},
+								"notations": {
+									"tuplet": {
+										"_number": "1",
+										"_type": "stop"
+									},
+									"slur": {
+										"_bezier-x": "-41",
+										"_bezier-y": "26",
+										"_default-x": "11",
+										"_default-y": "-7",
+										"_number": "1",
+										"_type": "stop"
+									}
+								},
+								"_default-x": "266"
+							}
+						],
+						"barline": {
+							"bar-style": "none",
+							"_location": "right"
+						},
+						"_number": "3",
+						"_width": "295"
+					},
+					{
+						"note": [
+							{
+								"pitch": {
+									"step": "D",
+									"octave": "3"
+								},
+								"duration": "9",
+								"voice": "1",
+								"type": "eighth",
+								"dot": "",
+								"stem": {
+									"_default-y": "-12",
+									"__text": "up"
+								},
+								"beam": {
+									"_number": "1",
+									"__text": "begin"
+								},
+								"notations": {
+									"slur": {
+										"_bezier-x": "31",
+										"_bezier-y": "-19",
+										"_default-x": "6",
+										"_default-y": "-55",
+										"_number": "1",
+										"_placement": "below",
+										"_type": "start"
+									}
+								},
+								"lyric": {
+									"syllabic": "middle",
+									"text": {
+										"_font-weight": "bold",
+										"__text": "spo"
+									},
+									"_default-y": "-80",
+									"_number": "1"
+								},
+								"_default-x": "14"
+							},
+							{
+								"pitch": {
+									"step": "F",
+									"octave": "3"
+								},
+								"duration": "3",
+								"voice": "1",
+								"type": "16th",
+								"stem": {
+									"_default-y": "-2",
+									"__text": "up"
+								},
+								"beam": [
+									{
+										"_number": "1",
+										"__text": "end"
+									},
+									{
+										"_number": "2",
+										"__text": "backward hook"
+									}
+								],
+								"_default-x": "94"
+							},
+							{
+								"pitch": {
+									"step": "E",
+									"alter": "-1",
+									"octave": "3"
+								},
+								"duration": "12",
+								"voice": "1",
+								"type": "quarter",
+								"stem": {
+									"_default-y": "-7",
+									"__text": "up"
+								},
+								"_default-x": "119"
+							},
+							{
+								"pitch": {
+									"step": "F",
+									"octave": "3"
+								},
+								"duration": "24",
+								"voice": "1",
+								"type": "half",
+								"stem": {
+									"_default-y": "-2",
+									"__text": "up"
+								},
+								"notations": {
+									"slur": {
+										"_bezier-x": "-29",
+										"_bezier-y": "-22",
+										"_default-x": "6",
+										"_default-y": "-46",
+										"_number": "1",
+										"_type": "stop"
+									}
+								},
+								"_default-x": "193"
+							}
+						],
+						"barline": {
+							"bar-style": "none",
+							"_location": "right"
+						},
+						"_number": "4",
+						"_width": "293"
+					},
+					{
+						"print": {
+							"system-layout": {
+								"system-distance": "189"
+							},
+							"_new-system": "yes"
+						},
+						"note": [
+							{
+								"pitch": {
+									"step": "B",
+									"alter": "-1",
+									"octave": "3"
+								},
+								"duration": "12",
+								"voice": "1",
+								"type": "quarter",
+								"stem": {
+									"_default-y": "-53",
+									"__text": "down"
+								},
+								"notations": {
+									"slur": {
+										"_bezier-x": "155",
+										"_bezier-y": "47",
+										"_default-x": "6",
+										"_default-y": "3",
+										"_number": "1",
+										"_placement": "above",
+										"_type": "start"
+									}
+								},
+								"lyric": {
+									"syllabic": "end",
+									"text": {
+										"_font-weight": "bold",
+										"__text": "ta!"
+									},
+									"_default-y": "-80",
+									"_number": "1"
+								},
+								"_default-x": "104"
+							},
+							{
+								"pitch": {
+									"step": "A",
+									"octave": "3"
+								},
+								"duration": "4",
+								"voice": "1",
+								"type": "eighth",
+								"time-modification": {
+									"actual-notes": "3",
+									"normal-notes": "2"
+								},
+								"stem": {
+									"_default-y": "8",
+									"__text": "up"
+								},
+								"beam": {
+									"_number": "1",
+									"__text": "begin"
+								},
+								"notations": {
+									"tuplet": {
+										"_bracket": "yes",
+										"_number": "1",
+										"_placement": "above",
+										"_type": "start"
+									}
+								},
+								"_default-x": "155"
+							},
+							{
+								"pitch": {
+									"step": "G",
+									"octave": "3"
+								},
+								"duration": "4",
+								"voice": "1",
+								"type": "eighth",
+								"time-modification": {
+									"actual-notes": "3",
+									"normal-notes": "2"
+								},
+								"stem": {
+									"_default-y": "3",
+									"__text": "up"
+								},
+								"beam": {
+									"_number": "1",
+									"__text": "continue"
+								},
+								"_default-x": "183"
+							},
+							{
+								"pitch": {
+									"step": "F",
+									"octave": "3"
+								},
+								"duration": "4",
+								"voice": "1",
+								"type": "eighth",
+								"time-modification": {
+									"actual-notes": "3",
+									"normal-notes": "2"
+								},
+								"stem": {
+									"_default-y": "-2",
+									"__text": "up"
+								},
+								"beam": {
+									"_number": "1",
+									"__text": "end"
+								},
+								"notations": {
+									"tuplet": {
+										"_number": "1",
+										"_type": "stop"
+									}
+								},
+								"_default-x": "212"
+							},
+							{
+								"pitch": {
+									"step": "G",
+									"octave": "3"
+								},
+								"duration": "12",
+								"voice": "1",
+								"type": "quarter",
+								"stem": {
+									"_default-y": "3",
+									"__text": "up"
+								},
+								"_default-x": "247"
+							},
+							{
+								"pitch": {
+									"step": "F",
+									"octave": "3"
+								},
+								"duration": "12",
+								"voice": "1",
+								"type": "quarter",
+								"stem": {
+									"_default-y": "-2",
+									"__text": "up"
+								},
+								"_default-x": "291"
+							}
+						],
+						"barline": {
+							"bar-style": "none",
+							"_location": "right"
+						},
+						"_number": "5",
+						"_width": "378"
+					},
+					{
+						"note": [
+							{
+								"pitch": {
+									"step": "G",
+									"octave": "3"
+								},
+								"duration": "12",
+								"voice": "1",
+								"type": "quarter",
+								"stem": {
+									"_default-y": "3",
+									"__text": "up"
+								},
+								"_default-x": "15"
+							},
+							{
+								"pitch": {
+									"step": "E",
+									"alter": "-1",
+									"octave": "3"
+								},
+								"duration": "12",
+								"voice": "1",
+								"type": "quarter",
+								"stem": {
+									"_default-y": "-7",
+									"__text": "up"
+								},
+								"_default-x": "69"
+							},
+							{
+								"pitch": {
+									"step": "F",
+									"octave": "3"
+								},
+								"duration": "6",
+								"voice": "1",
+								"type": "eighth",
+								"stem": {
+									"_default-y": "-2",
+									"__text": "up"
+								},
+								"beam": {
+									"_number": "1",
+									"__text": "begin"
+								},
+								"_default-x": "122"
+							},
+							{
+								"pitch": {
+									"step": "G",
+									"octave": "3"
+								},
+								"duration": "6",
+								"voice": "1",
+								"type": "eighth",
+								"stem": {
+									"_default-y": "3",
+									"__text": "up"
+								},
+								"beam": {
+									"_number": "1",
+									"__text": "end"
+								},
+								"_default-x": "160"
+							},
+							{
+								"pitch": {
+									"step": "A",
+									"octave": "3"
+								},
+								"duration": "12",
+								"voice": "1",
+								"type": "quarter",
+								"stem": {
+									"_default-y": "8",
+									"__text": "up"
+								},
+								"_default-x": "198"
+							}
+						],
+						"barline": {
+							"bar-style": "none",
+							"_location": "right"
+						},
+						"_number": "6",
+						"_width": "306"
+					},
+					{
+						"note": [
+							{
+								"pitch": {
+									"step": "G",
+									"octave": "3"
+								},
+								"duration": "3",
+								"voice": "1",
+								"type": "16th",
+								"stem": {
+									"_default-y": "10",
+									"__text": "up"
+								},
+								"beam": [
+									{
+										"_number": "1",
+										"__text": "begin"
+									},
+									{
+										"_number": "2",
+										"__text": "begin"
+									}
+								],
+								"_default-x": "14"
+							},
+							{
+								"pitch": {
+									"step": "A",
+									"octave": "3"
+								},
+								"duration": "3",
+								"voice": "1",
+								"type": "16th",
+								"stem": {
+									"_default-y": "8",
+									"__text": "up"
+								},
+								"beam": [
+									{
+										"_number": "1",
+										"__text": "continue"
+									},
+									{
+										"_number": "2",
+										"__text": "end"
+									}
+								],
+								"_default-x": "43"
+							},
+							{
+								"pitch": {
+									"step": "F",
+									"octave": "3"
+								},
+								"duration": "6",
+								"voice": "1",
+								"type": "eighth",
+								"stem": {
+									"_default-y": "6",
+									"__text": "up"
+								},
+								"beam": {
+									"_number": "1",
+									"__text": "end"
+								},
+								"_default-x": "71"
+							},
+							{
+								"pitch": {
+									"step": "G",
+									"octave": "3"
+								},
+								"duration": "12",
+								"voice": "1",
+								"type": "quarter",
+								"stem": {
+									"_default-y": "3",
+									"__text": "up"
+								},
+								"_default-x": "128"
+							},
+							{
+								"pitch": {
+									"step": "A",
+									"octave": "3"
+								},
+								"duration": "12",
+								"voice": "1",
+								"type": "quarter",
+								"stem": {
+									"_default-y": "8",
+									"__text": "up"
+								},
+								"_default-x": "226"
+							},
+							{
+								"pitch": {
+									"step": "C",
+									"octave": "4"
+								},
+								"duration": "12",
+								"voice": "1",
+								"type": "quarter",
+								"stem": {
+									"_default-y": "-48",
+									"__text": "down"
+								},
+								"_default-x": "283"
+							}
+						],
+						"barline": {
+							"bar-style": "none",
+							"_location": "right"
+						},
+						"_number": "7",
+						"_width": "340"
+					},
+					{
+						"note": {
+							"pitch": {
+								"step": "B",
+								"alter": "-1",
+								"octave": "3"
+							},
+							"duration": "48",
+							"voice": "1",
+							"type": "whole",
+							"notations": {
+								"slur": {
+									"_bezier-x": "-156",
+									"_bezier-y": "43",
+									"_default-x": "8",
+									"_default-y": "3",
+									"_number": "1",
+									"_type": "stop"
+								},
+								"fermata": {
+									"_default-y": "8",
+									"_relative-x": "-5",
+									"_type": "upright"
+								}
+							},
+							"_default-x": "14"
+						},
+						"barline": {
+							"bar-style": "light-heavy",
+							"_location": "right"
+						},
+						"_number": "8",
+						"_width": "83"
+					}
+				],
+				"_id": "P1"
+			},
+			{
+				"measure": [
+					{
+						"print": {
+							"staff-layout": {
+								"staff-distance": "72",
+								"_number": "1"
+							},
+							"measure-numbering": "none"
+						},
+						"attributes": {
+							"divisions": "12",
+							"key": {
+								"fifths": "-2",
+								"mode": "major"
+							},
+							"time": {
+								"senza-misura": "",
+								"_print-object": "no"
+							},
+							"clef": {
+								"sign": "G",
+								"line": "2",
+								"clef-octave-change": "-1"
+							}
+						},
+						"sound": {
+							"_tempo": "100"
+						},
+						"note": [
+							{
+								"pitch": {
+									"step": "G",
+									"octave": "3"
+								},
+								"duration": "6",
+								"voice": "1",
+								"type": "eighth",
+								"stem": {
+									"_default-y": "3",
+									"__text": "up"
+								},
+								"lyric": {
+									"syllabic": "single",
+									"text": {
+										"_font-weight": "bold",
+										"__text": "is"
+									},
+									"_default-y": "-80",
+									"_number": "1"
+								},
+								"_default-x": "99"
+							},
+							{
+								"pitch": {
+									"step": "G",
+									"octave": "3"
+								},
+								"duration": "6",
+								"voice": "1",
+								"type": "eighth",
+								"stem": {
+									"_default-y": "3",
+									"__text": "up"
+								},
+								"lyric": {
+									"syllabic": "begin",
+									"text": {
+										"_font-weight": "bold",
+										"__text": "po"
+									},
+									"_default-y": "-80",
+									"_number": "1"
+								},
+								"_default-x": "139"
+							},
+							{
+								"pitch": {
+									"step": "G",
+									"octave": "3"
+								},
+								"duration": "36",
+								"voice": "1",
+								"type": "half",
+								"dot": "",
+								"stem": {
+									"_default-y": "3",
+									"__text": "up"
+								},
+								"lyric": {
+									"syllabic": "end",
+									"text": {
+										"_font-weight": "bold",
+										"__text": "lla"
+									},
+									"_default-y": "-80",
+									"_number": "1"
+								},
+								"_default-x": "184"
+							}
+						],
+						"barline": {
+							"bar-style": "none",
+							"_location": "right"
+						},
+						"_number": "1",
+						"_width": "292"
+					},
+					{
+						"note": [
+							{
+								"pitch": {
+									"step": "G",
+									"octave": "3"
+								},
+								"duration": "12",
+								"voice": "1",
+								"type": "quarter",
+								"stem": {
+									"_default-y": "3",
+									"__text": "up"
+								},
+								"notations": {
+									"slur": {
+										"_bezier-x": "7",
+										"_bezier-y": "-10",
+										"_default-x": "6",
+										"_default-y": "-43",
+										"_number": "1",
+										"_placement": "below",
+										"_type": "start"
+									}
+								},
+								"lyric": {
+									"syllabic": "begin",
+									"text": {
+										"_font-weight": "bold",
+										"__text": "e"
+									},
+									"_default-y": "-80",
+									"_number": "1"
+								},
+								"_default-x": "14"
+							},
+							{
+								"pitch": {
+									"step": "F",
+									"octave": "3"
+								},
+								"duration": "12",
+								"voice": "1",
+								"type": "quarter",
+								"stem": {
+									"_default-y": "-2",
+									"__text": "up"
+								},
+								"notations": {
+									"slur": {
+										"_bezier-x": "-7",
+										"_bezier-y": "-9",
+										"_default-x": "6",
+										"_default-y": "-45",
+										"_number": "1",
+										"_type": "stop"
+									}
+								},
+								"_default-x": "58"
+							},
+							{
+								"pitch": {
+									"step": "G",
+									"octave": "3"
+								},
+								"duration": "6",
+								"voice": "1",
+								"type": "eighth",
+								"stem": {
+									"_default-y": "3",
+									"__text": "up"
+								},
+								"beam": {
+									"_number": "1",
+									"__text": "begin"
+								},
+								"notations": {
+									"slur": {
+										"_bezier-x": "20",
+										"_bezier-y": "12",
+										"_default-x": "12",
+										"_default-y": "16",
+										"_number": "1",
+										"_placement": "above",
+										"_type": "start"
+									}
+								},
+								"lyric": {
+									"syllabic": "end",
+									"text": {
+										"_font-weight": "bold",
+										"__text": "ti"
+									},
+									"_default-y": "-80",
+									"_number": "1"
+								},
+								"_default-x": "100"
+							},
+							{
+								"pitch": {
+									"step": "A",
+									"octave": "3"
+								},
+								"duration": "6",
+								"voice": "1",
+								"type": "eighth",
+								"stem": {
+									"_default-y": "8",
+									"__text": "up"
+								},
+								"beam": {
+									"_number": "1",
+									"__text": "end"
+								},
+								"_default-x": "135"
+							},
+							{
+								"pitch": {
+									"step": "B",
+									"alter": "-1",
+									"octave": "3"
+								},
+								"duration": "6",
+								"voice": "1",
+								"type": "eighth",
+								"stem": {
+									"_default-y": "-53",
+									"__text": "down"
+								},
+								"beam": {
+									"_number": "1",
+									"__text": "begin"
+								},
+								"_default-x": "174"
+							},
+							{
+								"pitch": {
+									"step": "C",
+									"octave": "4"
+								},
+								"duration": "6",
+								"voice": "1",
+								"type": "eighth",
+								"stem": {
+									"_default-y": "-48",
+									"__text": "down"
+								},
+								"beam": {
+									"_number": "1",
+									"__text": "end"
+								},
+								"notations": {
+									"slur": {
+										"_bezier-x": "-14",
+										"_bezier-y": "19",
+										"_default-x": "6",
+										"_default-y": "-5",
+										"_number": "1",
+										"_type": "stop"
+									}
+								},
+								"_default-x": "207"
+							}
+						],
+						"barline": {
+							"bar-style": "none",
+							"_location": "right"
+						},
+						"_number": "2",
+						"_width": "226"
+					},
+					{
+						"note": [
+							{
+								"pitch": {
+									"step": "B",
+									"alter": "-1",
+									"octave": "3"
+								},
+								"duration": "12",
+								"voice": "1",
+								"type": "quarter",
+								"stem": {
+									"_default-y": "-53",
+									"__text": "down"
+								},
+								"notations": {
+									"slur": {
+										"_bezier-x": "41",
+										"_bezier-y": "26",
+										"_default-x": "6",
+										"_default-y": "-1",
+										"_number": "1",
+										"_placement": "above",
+										"_type": "start"
+									}
+								},
+								"lyric": {
+									"syllabic": "begin",
+									"text": {
+										"_font-weight": "bold",
+										"__text": "de"
+									},
+									"_default-y": "-80",
+									"_number": "1"
+								},
+								"_default-x": "22"
+							},
+							{
+								"pitch": {
+									"step": "A",
+									"octave": "3"
+								},
+								"duration": "24",
+								"voice": "1",
+								"type": "half",
+								"stem": {
+									"_default-y": "8",
+									"__text": "up"
+								},
+								"_default-x": "72"
+							},
+							{
+								"pitch": {
+									"step": "B",
+									"alter": "-1",
+									"octave": "3"
+								},
+								"duration": "4",
+								"voice": "1",
+								"type": "eighth",
+								"time-modification": {
+									"actual-notes": "3",
+									"normal-notes": "2"
+								},
+								"stem": {
+									"_default-y": "13",
+									"__text": "up"
+								},
+								"beam": {
+									"_number": "1",
+									"__text": "begin"
+								},
+								"notations": {
+									"tuplet": {
+										"_bracket": "yes",
+										"_number": "1",
+										"_placement": "above",
+										"_type": "start"
+									}
+								},
+								"_default-x": "209"
+							},
+							{
+								"pitch": {
+									"step": "A",
+									"octave": "3"
+								},
+								"duration": "4",
+								"voice": "1",
+								"type": "eighth",
+								"time-modification": {
+									"actual-notes": "3",
+									"normal-notes": "2"
+								},
+								"stem": {
+									"_default-y": "8",
+									"__text": "up"
+								},
+								"beam": {
+									"_number": "1",
+									"__text": "continue"
+								},
+								"_default-x": "237"
+							},
+							{
+								"pitch": {
+									"step": "G",
+									"octave": "3"
+								},
+								"duration": "4",
+								"voice": "1",
+								"type": "eighth",
+								"time-modification": {
+									"actual-notes": "3",
+									"normal-notes": "2"
+								},
+								"stem": {
+									"_default-y": "3",
+									"__text": "up"
+								},
+								"beam": {
+									"_number": "1",
+									"__text": "end"
+								},
+								"notations": {
+									"tuplet": {
+										"_number": "1",
+										"_type": "stop"
+									},
+									"slur": {
+										"_bezier-x": "-42",
+										"_bezier-y": "23",
+										"_default-x": "11",
+										"_default-y": "8",
+										"_number": "1",
+										"_type": "stop"
+									}
+								},
+								"_default-x": "266"
+							}
+						],
+						"barline": {
+							"bar-style": "none",
+							"_location": "right"
+						},
+						"_number": "3",
+						"_width": "295"
+					},
+					{
+						"note": [
+							{
+								"pitch": {
+									"step": "G",
+									"octave": "3"
+								},
+								"duration": "3",
+								"voice": "1",
+								"type": "16th",
+								"stem": {
+									"_default-y": "10",
+									"__text": "up"
+								},
+								"beam": [
+									{
+										"_number": "1",
+										"__text": "begin"
+									},
+									{
+										"_number": "2",
+										"__text": "begin"
+									}
+								],
+								"notations": {
+									"slur": {
+										"_bezier-x": "30",
+										"_bezier-y": "-21",
+										"_default-x": "6",
+										"_default-y": "-43",
+										"_number": "1",
+										"_placement": "below",
+										"_type": "start"
+									}
+								},
+								"lyric": {
+									"syllabic": "middle",
+									"text": {
+										"_font-weight": "bold",
+										"__text": "spo"
+									},
+									"_default-y": "-80",
+									"_number": "1"
+								},
+								"_default-x": "14"
+							},
+							{
+								"pitch": {
+									"step": "A",
+									"octave": "3"
+								},
+								"duration": "3",
+								"voice": "1",
+								"type": "16th",
+								"stem": {
+									"_default-y": "8",
+									"__text": "up"
+								},
+								"beam": [
+									{
+										"_number": "1",
+										"__text": "continue"
+									},
+									{
+										"_number": "2",
+										"__text": "continue"
+									}
+								],
+								"_default-x": "43"
+							},
+							{
+								"pitch": {
+									"step": "G",
+									"octave": "3"
+								},
+								"duration": "3",
+								"voice": "1",
+								"type": "16th",
+								"stem": {
+									"_default-y": "6.5",
+									"__text": "up"
+								},
+								"beam": [
+									{
+										"_number": "1",
+										"__text": "continue"
+									},
+									{
+										"_number": "2",
+										"__text": "continue"
+									}
+								],
+								"_default-x": "68"
+							},
+							{
+								"pitch": {
+									"step": "F",
+									"octave": "3"
+								},
+								"duration": "3",
+								"voice": "1",
+								"type": "16th",
+								"stem": {
+									"_default-y": "5",
+									"__text": "up"
+								},
+								"beam": [
+									{
+										"_number": "1",
+										"__text": "end"
+									},
+									{
+										"_number": "2",
+										"__text": "end"
+									}
+								],
+								"_default-x": "94"
+							},
+							{
+								"pitch": {
+									"step": "G",
+									"octave": "3"
+								},
+								"duration": "6",
+								"voice": "1",
+								"type": "eighth",
+								"stem": {
+									"_default-y": "8",
+									"__text": "up"
+								},
+								"beam": {
+									"_number": "1",
+									"__text": "begin"
+								},
+								"_default-x": "119"
+							},
+							{
+								"pitch": {
+									"step": "A",
+									"octave": "3"
+								},
+								"duration": "3",
+								"voice": "1",
+								"type": "16th",
+								"stem": {
+									"_default-y": "8",
+									"__text": "up"
+								},
+								"beam": [
+									{
+										"_number": "1",
+										"__text": "continue"
+									},
+									{
+										"_number": "2",
+										"__text": "begin"
+									}
+								],
+								"_default-x": "149"
+							},
+							{
+								"pitch": {
+									"step": "G",
+									"octave": "3"
+								},
+								"duration": "3",
+								"voice": "1",
+								"type": "16th",
+								"stem": {
+									"_default-y": "8",
+									"__text": "up"
+								},
+								"beam": [
+									{
+										"_number": "1",
+										"__text": "end"
+									},
+									{
+										"_number": "2",
+										"__text": "end"
+									}
+								],
+								"_default-x": "170"
+							},
+							{
+								"pitch": {
+									"step": "F",
+									"octave": "3"
+								},
+								"duration": "24",
+								"voice": "1",
+								"type": "half",
+								"stem": {
+									"_default-y": "-2",
+									"__text": "up"
+								},
+								"notations": {
+									"slur": {
+										"_bezier-x": "-30",
+										"_bezier-y": "-20",
+										"_default-x": "6",
+										"_default-y": "-45",
+										"_number": "1",
+										"_type": "stop"
+									}
+								},
+								"_default-x": "193"
+							}
+						],
+						"barline": {
+							"bar-style": "none",
+							"_location": "right"
+						},
+						"_number": "4",
+						"_width": "293"
+					},
+					{
+						"print": {
+							"staff-layout": {
+								"staff-distance": "72",
+								"_number": "1"
+							},
+							"_new-system": "yes"
+						},
+						"note": [
+							{
+								"pitch": {
+									"step": "G",
+									"octave": "3"
+								},
+								"duration": "12",
+								"voice": "1",
+								"type": "quarter",
+								"stem": {
+									"_default-y": "3",
+									"__text": "up"
+								},
+								"notations": {
+									"slur": {
+										"_bezier-x": "151",
+										"_bezier-y": "56",
+										"_default-x": "17",
+										"_default-y": "3",
+										"_number": "1",
+										"_placement": "above",
+										"_type": "start"
+									}
+								},
+								"lyric": {
+									"syllabic": "end",
+									"text": {
+										"_font-weight": "bold",
+										"__text": "ta!"
+									},
+									"_default-y": "-80",
+									"_number": "1"
+								},
+								"_default-x": "104"
+							},
+							{
+								"pitch": {
+									"step": "A",
+									"octave": "3"
+								},
+								"duration": "12",
+								"voice": "1",
+								"type": "quarter",
+								"stem": {
+									"_default-y": "8",
+									"__text": "up"
+								},
+								"_default-x": "155"
+							},
+							{
+								"pitch": {
+									"step": "B",
+									"alter": "-1",
+									"octave": "3"
+								},
+								"duration": "12",
+								"voice": "1",
+								"type": "quarter",
+								"stem": {
+									"_default-y": "-53",
+									"__text": "down"
+								},
+								"_default-x": "247"
+							},
+							{
+								"pitch": {
+									"step": "A",
+									"octave": "3"
+								},
+								"duration": "4",
+								"voice": "1",
+								"type": "eighth",
+								"time-modification": {
+									"actual-notes": "3",
+									"normal-notes": "2"
+								},
+								"stem": {
+									"_default-y": "-58",
+									"__text": "down"
+								},
+								"beam": {
+									"_number": "1",
+									"__text": "begin"
+								},
+								"notations": {
+									"tuplet": {
+										"_bracket": "yes",
+										"_number": "1",
+										"_placement": "above",
+										"_type": "start"
+									}
+								},
+								"_default-x": "291"
+							},
+							{
+								"pitch": {
+									"step": "B",
+									"alter": "-1",
+									"octave": "3"
+								},
+								"duration": "4",
+								"voice": "1",
+								"type": "eighth",
+								"time-modification": {
+									"actual-notes": "3",
+									"normal-notes": "2"
+								},
+								"stem": {
+									"_default-y": "-53",
+									"__text": "down"
+								},
+								"beam": {
+									"_number": "1",
+									"__text": "continue"
+								},
+								"_default-x": "320"
+							},
+							{
+								"pitch": {
+									"step": "C",
+									"octave": "4"
+								},
+								"duration": "4",
+								"voice": "1",
+								"type": "eighth",
+								"time-modification": {
+									"actual-notes": "3",
+									"normal-notes": "2"
+								},
+								"stem": {
+									"_default-y": "-48",
+									"__text": "down"
+								},
+								"beam": {
+									"_number": "1",
+									"__text": "end"
+								},
+								"notations": {
+									"tuplet": {
+										"_number": "1",
+										"_type": "stop"
+									}
+								},
+								"_default-x": "349"
+							}
+						],
+						"barline": {
+							"bar-style": "none",
+							"_location": "right"
+						},
+						"_number": "5",
+						"_width": "378"
+					},
+					{
+						"note": [
+							{
+								"pitch": {
+									"step": "D",
+									"octave": "4"
+								},
+								"duration": "24",
+								"voice": "1",
+								"type": "half",
+								"stem": {
+									"_default-y": "-42.5",
+									"__text": "down"
+								},
+								"_default-x": "15"
+							},
+							{
+								"pitch": {
+									"step": "C",
+									"octave": "4"
+								},
+								"duration": "12",
+								"voice": "1",
+								"type": "quarter",
+								"stem": {
+									"_default-y": "-48",
+									"__text": "down"
+								},
+								"_default-x": "122"
+							},
+							{
+								"pitch": {
+									"step": "D",
+									"octave": "4"
+								},
+								"duration": "3",
+								"voice": "1",
+								"type": "16th",
+								"stem": {
+									"_default-y": "-49.5",
+									"__text": "down"
+								},
+								"beam": [
+									{
+										"_number": "1",
+										"__text": "begin"
+									},
+									{
+										"_number": "2",
+										"__text": "begin"
+									}
+								],
+								"_default-x": "198"
+							},
+							{
+								"pitch": {
+									"step": "C",
+									"octave": "4"
+								},
+								"duration": "3",
+								"voice": "1",
+								"type": "16th",
+								"stem": {
+									"_default-y": "-51",
+									"__text": "down"
+								},
+								"beam": [
+									{
+										"_number": "1",
+										"__text": "continue"
+									},
+									{
+										"_number": "2",
+										"__text": "continue"
+									}
+								],
+								"_default-x": "225"
+							},
+							{
+								"pitch": {
+									"step": "B",
+									"alter": "-1",
+									"octave": "3"
+								},
+								"duration": "3",
+								"voice": "1",
+								"type": "16th",
+								"stem": {
+									"_default-y": "-53",
+									"__text": "down"
+								},
+								"beam": [
+									{
+										"_number": "1",
+										"__text": "continue"
+									},
+									{
+										"_number": "2",
+										"__text": "continue"
+									}
+								],
+								"_default-x": "254"
+							},
+							{
+								"pitch": {
+									"step": "C",
+									"octave": "4"
+								},
+								"duration": "3",
+								"voice": "1",
+								"type": "16th",
+								"stem": {
+									"_default-y": "-54.5",
+									"__text": "down"
+								},
+								"beam": [
+									{
+										"_number": "1",
+										"__text": "end"
+									},
+									{
+										"_number": "2",
+										"__text": "end"
+									}
+								],
+								"_default-x": "285"
+							}
+						],
+						"barline": {
+							"bar-style": "none",
+							"_location": "right"
+						},
+						"_number": "6",
+						"_width": "306"
+					},
+					{
+						"note": [
+							{
+								"pitch": {
+									"step": "B",
+									"alter": "-1",
+									"octave": "3"
+								},
+								"duration": "3",
+								"voice": "1",
+								"type": "16th",
+								"stem": {
+									"_default-y": "-53",
+									"__text": "down"
+								},
+								"beam": [
+									{
+										"_number": "1",
+										"__text": "begin"
+									},
+									{
+										"_number": "2",
+										"__text": "begin"
+									}
+								],
+								"_default-x": "14"
+							},
+							{
+								"pitch": {
+									"step": "C",
+									"octave": "4"
+								},
+								"duration": "3",
+								"voice": "1",
+								"type": "16th",
+								"stem": {
+									"_default-y": "-54.5",
+									"__text": "down"
+								},
+								"beam": [
+									{
+										"_number": "1",
+										"__text": "continue"
+									},
+									{
+										"_number": "2",
+										"__text": "continue"
+									}
+								],
+								"_default-x": "43"
+							},
+							{
+								"pitch": {
+									"step": "B",
+									"alter": "-1",
+									"octave": "3"
+								},
+								"duration": "3",
+								"voice": "1",
+								"type": "16th",
+								"stem": {
+									"_default-y": "-56",
+									"__text": "down"
+								},
+								"beam": [
+									{
+										"_number": "1",
+										"__text": "continue"
+									},
+									{
+										"_number": "2",
+										"__text": "continue"
+									}
+								],
+								"_default-x": "71"
+							},
+							{
+								"pitch": {
+									"step": "A",
+									"octave": "3"
+								},
+								"duration": "3",
+								"voice": "1",
+								"type": "16th",
+								"stem": {
+									"_default-y": "-58",
+									"__text": "down"
+								},
+								"beam": [
+									{
+										"_number": "1",
+										"__text": "end"
+									},
+									{
+										"_number": "2",
+										"__text": "end"
+									}
+								],
+								"_default-x": "100"
+							},
+							{
+								"pitch": {
+									"step": "B",
+									"alter": "-1",
+									"octave": "3"
+								},
+								"duration": "6",
+								"voice": "1",
+								"type": "eighth",
+								"stem": {
+									"_default-y": "-53",
+									"__text": "down"
+								},
+								"beam": {
+									"_number": "1",
+									"__text": "begin"
+								},
+								"_default-x": "128"
+							},
+							{
+								"pitch": {
+									"step": "C",
+									"octave": "4"
+								},
+								"duration": "3",
+								"voice": "1",
+								"type": "16th",
+								"stem": {
+									"_default-y": "-53",
+									"__text": "down"
+								},
+								"beam": [
+									{
+										"_number": "1",
+										"__text": "continue"
+									},
+									{
+										"_number": "2",
+										"__text": "begin"
+									}
+								],
+								"_default-x": "169"
+							},
+							{
+								"pitch": {
+									"step": "B",
+									"alter": "-1",
+									"octave": "3"
+								},
+								"duration": "3",
+								"voice": "1",
+								"type": "16th",
+								"stem": {
+									"_default-y": "-53",
+									"__text": "down"
+								},
+								"beam": [
+									{
+										"_number": "1",
+										"__text": "end"
+									},
+									{
+										"_number": "2",
+										"__text": "end"
+									}
+								],
+								"_default-x": "197"
+							},
+							{
+								"pitch": {
+									"step": "A",
+									"octave": "3"
+								},
+								"duration": "24",
+								"voice": "1",
+								"type": "half",
+								"stem": {
+									"_default-y": "8",
+									"__text": "up"
+								},
+								"_default-x": "226"
+							}
+						],
+						"barline": {
+							"bar-style": "none",
+							"_location": "right"
+						},
+						"_number": "7",
+						"_width": "340"
+					},
+					{
+						"note": {
+							"pitch": {
+								"step": "B",
+								"alter": "-1",
+								"octave": "3"
+							},
+							"duration": "48",
+							"voice": "1",
+							"type": "whole",
+							"notations": {
+								"slur": {
+									"_bezier-x": "-154",
+									"_bezier-y": "41",
+									"_default-x": "8",
+									"_default-y": "3",
+									"_number": "1",
+									"_type": "stop"
+								},
+								"fermata": {
+									"_default-y": "8",
+									"_relative-x": "-5",
+									"_type": "upright"
+								}
+							},
+							"_default-x": "14"
+						},
+						"barline": {
+							"bar-style": "light-heavy",
+							"_location": "right"
+						},
+						"_number": "8",
+						"_width": "83"
+					}
+				],
+				"_id": "P2"
+			},
+			{
+				"measure": [
+					{
+						"print": {
+							"staff-layout": {
+								"staff-distance": "71",
+								"_number": "1"
+							},
+							"measure-numbering": "none"
+						},
+						"attributes": {
+							"divisions": "2",
+							"key": {
+								"fifths": "-2",
+								"mode": "major"
+							},
+							"time": {
+								"senza-misura": "",
+								"_print-object": "no"
+							},
+							"clef": {
+								"sign": "F",
+								"line": "4"
+							}
+						},
+						"sound": {
+							"_tempo": "100"
+						},
+						"note": [
+							{
+								"pitch": {
+									"step": "B",
+									"alter": "-1",
+									"octave": "2"
+								},
+								"duration": "1",
+								"voice": "1",
+								"type": "eighth",
+								"stem": {
+									"_default-y": "3",
+									"__text": "up"
+								},
+								"lyric": {
+									"syllabic": "single",
+									"text": {
+										"_font-family": "Veshapo Univers Geo",
+										"_font-weight": "bold",
+										"__text": "is"
+									},
+									"_default-y": "-80",
+									"_number": "1"
+								},
+								"_default-x": "99"
+							},
+							{
+								"pitch": {
+									"step": "B",
+									"alter": "-1",
+									"octave": "2"
+								},
+								"duration": "1",
+								"voice": "1",
+								"type": "eighth",
+								"stem": {
+									"_default-y": "3",
+									"__text": "up"
+								},
+								"lyric": {
+									"syllabic": "begin",
+									"text": {
+										"_font-family": "Veshapo Univers Geo",
+										"_font-weight": "bold",
+										"__text": "po"
+									},
+									"_default-y": "-80",
+									"_number": "1"
+								},
+								"_default-x": "139"
+							},
+							{
+								"pitch": {
+									"step": "B",
+									"alter": "-1",
+									"octave": "2"
+								},
+								"duration": "4",
+								"voice": "1",
+								"type": "half",
+								"stem": {
+									"_default-y": "3",
+									"__text": "up"
+								},
+								"notations": {
+									"slur": {
+										"_bezier-x": "13",
+										"_bezier-y": "-11",
+										"_default-x": "6",
+										"_default-y": "-43",
+										"_number": "1",
+										"_placement": "below",
+										"_type": "start"
+									}
+								},
+								"lyric": {
+									"syllabic": "end",
+									"text": {
+										"_font-family": "Veshapo Univers Geo",
+										"_font-weight": "bold",
+										"__text": "lla"
+									},
+									"_default-y": "-80",
+									"_number": "1"
+								},
+								"_default-x": "184"
+							},
+							{
+								"pitch": {
+									"step": "C",
+									"octave": "3"
+								},
+								"duration": "2",
+								"voice": "1",
+								"type": "quarter",
+								"stem": {
+									"_default-y": "8",
+									"__text": "up"
+								},
+								"notations": {
+									"slur": {
+										"_bezier-x": "-10",
+										"_bezier-y": "-13",
+										"_default-x": "6",
+										"_default-y": "-36",
+										"_number": "1",
+										"_type": "stop"
+									}
+								},
+								"_default-x": "253"
+							}
+						],
+						"barline": {
+							"bar-style": "none",
+							"_location": "right"
+						},
+						"_number": "1",
+						"_width": "292"
+					},
+					{
+						"note": [
+							{
+								"pitch": {
+									"step": "D",
+									"octave": "3"
+								},
+								"duration": "4",
+								"voice": "1",
+								"type": "half",
+								"stem": {
+									"_default-y": "-53",
+									"__text": "down"
+								},
+								"lyric": {
+									"syllabic": "begin",
+									"text": {
+										"_font-family": "Veshapo Univers Geo",
+										"_font-weight": "bold",
+										"__text": "e"
+									},
+									"_default-y": "-80",
+									"_number": "1"
+								},
+								"_default-x": "14"
+							},
+							{
+								"pitch": {
+									"step": "C",
+									"octave": "3"
+								},
+								"duration": "1",
+								"voice": "1",
+								"type": "eighth",
+								"stem": {
+									"_default-y": "8",
+									"__text": "up"
+								},
+								"beam": {
+									"_number": "1",
+									"__text": "begin"
+								},
+								"notations": {
+									"slur": {
+										"_bezier-x": "11",
+										"_bezier-y": "-14",
+										"_default-x": "6",
+										"_default-y": "-36",
+										"_number": "1",
+										"_placement": "below",
+										"_type": "start"
+									}
+								},
+								"lyric": {
+									"syllabic": "end",
+									"text": {
+										"_font-family": "Veshapo Univers Geo",
+										"_font-weight": "bold",
+										"__text": "ti"
+									},
+									"_default-y": "-80",
+									"_number": "1"
+								},
+								"_default-x": "100"
+							},
+							{
+								"pitch": {
+									"step": "B",
+									"alter": "-1",
+									"octave": "2"
+								},
+								"duration": "1",
+								"voice": "1",
+								"type": "eighth",
+								"stem": {
+									"_default-y": "3",
+									"__text": "up"
+								},
+								"beam": {
+									"_number": "1",
+									"__text": "end"
+								},
+								"_default-x": "135"
+							},
+							{
+								"pitch": {
+									"step": "A",
+									"octave": "2"
+								},
+								"duration": "2",
+								"voice": "1",
+								"type": "quarter",
+								"stem": {
+									"_default-y": "-2",
+									"__text": "up"
+								},
+								"notations": {
+									"slur": {
+										"_bezier-x": "-14",
+										"_bezier-y": "-11",
+										"_default-x": "6",
+										"_default-y": "-45",
+										"_number": "1",
+										"_type": "stop"
+									}
+								},
+								"_default-x": "174"
+							}
+						],
+						"barline": {
+							"bar-style": "none",
+							"_location": "right"
+						},
+						"_number": "2",
+						"_width": "226"
+					},
+					{
+						"note": [
+							{
+								"pitch": {
+									"step": "B",
+									"alter": "-1",
+									"octave": "2"
+								},
+								"duration": "2",
+								"voice": "1",
+								"type": "quarter",
+								"stem": {
+									"_default-y": "3",
+									"__text": "up"
+								},
+								"notations": {
+									"slur": {
+										"_bezier-x": "37",
+										"_bezier-y": "24",
+										"_default-x": "17",
+										"_default-y": "3",
+										"_number": "1",
+										"_placement": "above",
+										"_type": "start"
+									}
+								},
+								"lyric": {
+									"syllabic": "begin",
+									"text": {
+										"_font-family": "Veshapo Univers Geo",
+										"_font-weight": "bold",
+										"__text": "de"
+									},
+									"_default-y": "-80",
+									"_number": "1"
+								},
+								"_default-x": "22"
+							},
+							{
+								"pitch": {
+									"step": "C",
+									"octave": "3"
+								},
+								"duration": "2",
+								"voice": "1",
+								"type": "quarter",
+								"stem": {
+									"_default-y": "8",
+									"__text": "up"
+								},
+								"_default-x": "72"
+							},
+							{
+								"pitch": {
+									"step": "D",
+									"octave": "3"
+								},
+								"duration": "2",
+								"voice": "1",
+								"type": "quarter",
+								"stem": {
+									"_default-y": "-53",
+									"__text": "down"
+								},
+								"_default-x": "163"
+							},
+							{
+								"pitch": {
+									"step": "C",
+									"octave": "3"
+								},
+								"duration": "1",
+								"voice": "1",
+								"type": "eighth",
+								"stem": {
+									"_default-y": "8",
+									"__text": "up"
+								},
+								"beam": {
+									"_number": "1",
+									"__text": "begin"
+								},
+								"_default-x": "209"
+							},
+							{
+								"pitch": {
+									"step": "A",
+									"octave": "2"
+								},
+								"duration": "1",
+								"voice": "1",
+								"type": "eighth",
+								"stem": {
+									"_default-y": "-2",
+									"__text": "up"
+								},
+								"beam": {
+									"_number": "1",
+									"__text": "end"
+								},
+								"notations": {
+									"slur": {
+										"_bezier-x": "-37",
+										"_bezier-y": "23",
+										"_default-x": "11",
+										"_default-y": "5",
+										"_number": "1",
+										"_type": "stop"
+									}
+								},
+								"_default-x": "252"
+							}
+						],
+						"barline": {
+							"bar-style": "none",
+							"_location": "right"
+						},
+						"_number": "3",
+						"_width": "295"
+					},
+					{
+						"note": [
+							{
+								"pitch": {
+									"step": "B",
+									"alter": "-1",
+									"octave": "2"
+								},
+								"duration": "1",
+								"voice": "1",
+								"type": "eighth",
+								"stem": {
+									"_default-y": "3",
+									"__text": "up"
+								},
+								"beam": {
+									"_number": "1",
+									"__text": "begin"
+								},
+								"notations": {
+									"slur": {
+										"_bezier-x": "42",
+										"_bezier-y": "22",
+										"_default-x": "12",
+										"_default-y": "8",
+										"_number": "1",
+										"_placement": "above",
+										"_type": "start"
+									}
+								},
+								"lyric": {
+									"syllabic": "middle",
+									"text": {
+										"_font-family": "Veshapo Univers Geo",
+										"_font-weight": "bold",
+										"__text": "spo"
+									},
+									"_default-y": "-80",
+									"_number": "1"
+								},
+								"_default-x": "14"
+							},
+							{
+								"pitch": {
+									"step": "C",
+									"octave": "3"
+								},
+								"duration": "1",
+								"voice": "1",
+								"type": "eighth",
+								"stem": {
+									"_default-y": "8",
+									"__text": "up"
+								},
+								"beam": {
+									"_number": "1",
+									"__text": "end"
+								},
+								"_default-x": "68"
+							},
+							{
+								"pitch": {
+									"step": "D",
+									"octave": "3"
+								},
+								"duration": "1",
+								"voice": "1",
+								"type": "eighth",
+								"stem": {
+									"_default-y": "-53",
+									"__text": "down"
+								},
+								"beam": {
+									"_number": "1",
+									"__text": "begin"
+								},
+								"_default-x": "119"
+							},
+							{
+								"pitch": {
+									"step": "E",
+									"alter": "-1",
+									"octave": "3"
+								},
+								"duration": "1",
+								"voice": "1",
+								"type": "eighth",
+								"stem": {
+									"_default-y": "-48",
+									"__text": "down"
+								},
+								"beam": {
+									"_number": "1",
+									"__text": "end"
+								},
+								"_default-x": "149"
+							},
+							{
+								"pitch": {
+									"step": "E",
+									"alter": "-1",
+									"octave": "3"
+								},
+								"duration": "1",
+								"voice": "1",
+								"type": "eighth",
+								"stem": {
+									"_default-y": "-48",
+									"__text": "down"
+								},
+								"beam": {
+									"_number": "1",
+									"__text": "begin"
+								},
+								"_default-x": "193"
+							},
+							{
+								"pitch": {
+									"step": "C",
+									"octave": "3"
+								},
+								"duration": "1",
+								"voice": "1",
+								"type": "eighth",
+								"stem": {
+									"_default-y": "-58",
+									"__text": "down"
+								},
+								"beam": {
+									"_number": "1",
+									"__text": "end"
+								},
+								"_default-x": "227"
+							},
+							{
+								"pitch": {
+									"step": "B",
+									"alter": "-1",
+									"octave": "2"
+								},
+								"duration": "2",
+								"voice": "1",
+								"type": "quarter",
+								"stem": {
+									"_default-y": "3",
+									"__text": "up"
+								},
+								"notations": {
+									"slur": {
+										"_bezier-x": "-39",
+										"_bezier-y": "27",
+										"_default-x": "6",
+										"_default-y": "-7",
+										"_number": "1",
+										"_type": "stop"
+									}
+								},
+								"_default-x": "265"
+							}
+						],
+						"barline": {
+							"bar-style": "none",
+							"_location": "right"
+						},
+						"_number": "4",
+						"_width": "293"
+					},
+					{
+						"print": {
+							"staff-layout": {
+								"staff-distance": "71",
+								"_number": "1"
+							},
+							"_new-system": "yes"
+						},
+						"note": [
+							{
+								"pitch": {
+									"step": "C",
+									"octave": "3"
+								},
+								"duration": "2",
+								"voice": "1",
+								"type": "quarter",
+								"stem": {
+									"_default-y": "8",
+									"__text": "up"
+								},
+								"notations": {
+									"slur": {
+										"_bezier-x": "151",
+										"_bezier-y": "32",
+										"_default-x": "18",
+										"_default-y": "3",
+										"_number": "1",
+										"_orientation": "over",
+										"_type": "start"
+									}
+								},
+								"lyric": {
+									"syllabic": "end",
+									"text": {
+										"_font-family": "Veshapo Univers Geo",
+										"_font-weight": "bold",
+										"__text": "ta!"
+									},
+									"_default-y": "-80",
+									"_number": "1"
+								},
+								"_default-x": "104"
+							},
+							{
+								"pitch": {
+									"step": "B",
+									"alter": "-1",
+									"octave": "2"
+								},
+								"duration": "2",
+								"voice": "1",
+								"type": "quarter",
+								"stem": {
+									"_default-y": "3",
+									"__text": "up"
+								},
+								"_default-x": "155"
+							},
+							{
+								"pitch": {
+									"step": "C",
+									"octave": "3"
+								},
+								"duration": "2",
+								"voice": "1",
+								"type": "quarter",
+								"stem": {
+									"_default-y": "8",
+									"__text": "up"
+								},
+								"_default-x": "247"
+							},
+							{
+								"pitch": {
+									"step": "B",
+									"alter": "-1",
+									"octave": "2"
+								},
+								"duration": "2",
+								"voice": "1",
+								"type": "quarter",
+								"stem": {
+									"_default-y": "3",
+									"__text": "up"
+								},
+								"_default-x": "291"
+							}
+						],
+						"barline": {
+							"bar-style": "none",
+							"_location": "right"
+						},
+						"_number": "5",
+						"_width": "378"
+					},
+					{
+						"note": [
+							{
+								"pitch": {
+									"step": "C",
+									"octave": "3"
+								},
+								"duration": "2",
+								"voice": "1",
+								"type": "quarter",
+								"stem": {
+									"_default-y": "8",
+									"__text": "up"
+								},
+								"_default-x": "15"
+							},
+							{
+								"pitch": {
+									"step": "D",
+									"octave": "3"
+								},
+								"duration": "2",
+								"voice": "1",
+								"type": "quarter",
+								"stem": {
+									"_default-y": "-53",
+									"__text": "down"
+								},
+								"_default-x": "69"
+							},
+							{
+								"pitch": {
+									"step": "E",
+									"alter": "-1",
+									"octave": "3"
+								},
+								"duration": "2",
+								"voice": "1",
+								"type": "quarter",
+								"stem": {
+									"_default-y": "-47.5",
+									"__text": "down"
+								},
+								"_default-x": "122"
+							},
+							{
+								"pitch": {
+									"step": "D",
+									"octave": "3"
+								},
+								"duration": "2",
+								"voice": "1",
+								"type": "quarter",
+								"stem": {
+									"_default-y": "-53",
+									"__text": "down"
+								},
+								"_default-x": "198"
+							}
+						],
+						"barline": {
+							"bar-style": "none",
+							"_location": "right"
+						},
+						"_number": "6",
+						"_width": "306"
+					},
+					{
+						"note": [
+							{
+								"pitch": {
+									"step": "E",
+									"alter": "-1",
+									"octave": "3"
+								},
+								"duration": "1",
+								"voice": "1",
+								"type": "eighth",
+								"stem": {
+									"_default-y": "-47.5",
+									"__text": "down"
+								},
+								"beam": {
+									"_number": "1",
+									"__text": "begin"
+								},
+								"_default-x": "14"
+							},
+							{
+								"pitch": {
+									"step": "F",
+									"octave": "3"
+								},
+								"duration": "1",
+								"voice": "1",
+								"type": "eighth",
+								"stem": {
+									"_default-y": "-43",
+									"__text": "down"
+								},
+								"beam": {
+									"_number": "1",
+									"__text": "end"
+								},
+								"_default-x": "71"
+							},
+							{
+								"pitch": {
+									"step": "F",
+									"octave": "3"
+								},
+								"duration": "1",
+								"voice": "1",
+								"type": "eighth",
+								"stem": {
+									"_default-y": "-43",
+									"__text": "down"
+								},
+								"beam": {
+									"_number": "1",
+									"__text": "begin"
+								},
+								"_default-x": "128"
+							},
+							{
+								"pitch": {
+									"step": "G",
+									"octave": "3"
+								},
+								"duration": "1",
+								"voice": "1",
+								"type": "eighth",
+								"stem": {
+									"_default-y": "-38",
+									"__text": "down"
+								},
+								"beam": {
+									"_number": "1",
+									"__text": "end"
+								},
+								"_default-x": "169"
+							},
+							{
+								"pitch": {
+									"step": "G",
+									"octave": "3"
+								},
+								"duration": "2",
+								"voice": "1",
+								"type": "quarter",
+								"stem": {
+									"_default-y": "-38",
+									"__text": "down"
+								},
+								"_default-x": "226"
+							},
+							{
+								"pitch": {
+									"step": "A",
+									"octave": "3"
+								},
+								"duration": "2",
+								"voice": "1",
+								"type": "quarter",
+								"stem": {
+									"_default-y": "-33",
+									"__text": "down"
+								},
+								"_default-x": "283"
+							}
+						],
+						"barline": {
+							"bar-style": "none",
+							"_location": "right"
+						},
+						"_number": "7",
+						"_width": "340"
+					},
+					{
+						"note": {
+							"pitch": {
+								"step": "B",
+								"alter": "-1",
+								"octave": "3"
+							},
+							"duration": "8",
+							"voice": "1",
+							"type": "whole",
+							"notations": {
+								"slur": {
+									"_bezier-x": "-152",
+									"_bezier-y": "30",
+									"_default-x": "-3",
+									"_default-y": "15",
+									"_number": "1",
+									"_type": "stop"
+								},
+								"fermata": {
+									"_default-y": "16",
+									"_relative-x": "-6",
+									"_type": "upright"
+								}
+							},
+							"_default-x": "14"
+						},
+						"barline": {
+							"bar-style": "light-heavy",
+							"_location": "right"
+						},
+						"_number": "8",
+						"_width": "83"
+					}
+				],
+				"_id": "P3"
+			}
+		],
+		"_version": "3.0"
+	}
+}
