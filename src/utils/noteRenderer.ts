@@ -1,19 +1,18 @@
-import type { NoteData, NoteType, StemDir } from '../types';
+import type { NoteData, NoteType, StemDir, CalibrationState } from '../types';
 
 // ─── Colours ─────────────────────────────────────────────────────────────────
-export const COLOR_ABOVE = '#2563eb'; // blue-600
-export const COLOR_BELOW = '#dc2626'; // red-600
+export const COLOR_ABOVE    = '#2563eb'; // blue-600  – high confidence
+export const COLOR_BELOW    = '#dc2626'; // red-600   – low confidence
+export const COLOR_VERIFIED = '#16a34a'; // green-600 – manually verified/corrected
 
 function noteColor(note: NoteData, threshold: number): string {
+  if (note.status === 'verified' || note.status === 'corrected') return COLOR_VERIFIED;
   return note.confidence >= threshold ? COLOR_ABOVE : COLOR_BELOW;
 }
 
 // ─── Drawing helpers ─────────────────────────────────────────────────────────
 
-/**
- * Draw a tilted oval note-head centred at (cx, cy).
- * open = true for whole / half notes (hollow), false for quarter and smaller.
- */
+/** Draw a tilted oval note-head centred at (cx, cy). */
 function drawHead(
   ctx: CanvasRenderingContext2D,
   cx: number,
@@ -23,14 +22,13 @@ function drawHead(
   color: string,
   open: boolean,
 ): void {
-  const TILT = -Math.PI / 9; // ~−20 °
+  const TILT = -Math.PI / 9;
   ctx.save();
   ctx.translate(cx, cy);
   ctx.rotate(TILT);
   ctx.beginPath();
   ctx.ellipse(0, 0, rx, ry, 0, 0, Math.PI * 2);
   if (open) {
-    // Hollow: punch out the inside so background shows through
     ctx.fillStyle = 'rgba(255,255,255,0)';
     ctx.strokeStyle = color;
     ctx.lineWidth = Math.max(1.5, rx * 0.4);
@@ -68,10 +66,7 @@ function drawStem(
   return [sx, sy];
 }
 
-/**
- * Draw 1-3 flags at the tip of the stem.
- * flags: 1 = eighth, 2 = 16th, 3 = 32nd
- */
+/** Draw 1–3 flags at the tip of the stem. */
 function drawFlags(
   ctx: CanvasRenderingContext2D,
   tx: number,
@@ -136,11 +131,6 @@ function drawAccidental(
 }
 
 // ─── Ledger lines ─────────────────────────────────────────────────────────────
-/**
- * Draw ledger lines for notes outside the staff.
- * staffTop is the canvas-Y of the top staff line.
- * staffLineSpacing is 10 tenths × scaleY pixels.
- */
 function drawLedgerLines(
   ctx: CanvasRenderingContext2D,
   cx: number,
@@ -155,7 +145,6 @@ function drawLedgerLines(
   ctx.strokeStyle = color;
   ctx.lineWidth = Math.max(1, rx * 0.2);
 
-  // Above staff (cy < staffTop)
   if (cy < staffTop - lineSpacing * 0.4) {
     let ly = staffTop - lineSpacing;
     while (ly >= cy - lineSpacing * 0.4) {
@@ -167,7 +156,6 @@ function drawLedgerLines(
     }
   }
 
-  // Below staff (cy > staffBottom)
   if (cy > staffBottom + lineSpacing * 0.4) {
     let ly = staffBottom + lineSpacing;
     while (ly <= cy + lineSpacing * 0.4) {
@@ -180,19 +168,32 @@ function drawLedgerLines(
   }
 }
 
+// ─── Calibration helper ──────────────────────────────────────────────────────
+/** Apply calibration to a raw canvas coordinate. */
+function applyCalib(raw: number, scale: number, offset: number): number {
+  return raw * scale + offset;
+}
+
+/** Inverse-calibrate: convert a canvas pixel back to raw coordinate space. */
+function inverseCalib(px: number, scale: number, offset: number): number {
+  return (px - offset) / scale;
+}
+
 // ─── Main draw function ───────────────────────────────────────────────────────
 
-/** Score page dimensions (tenths) — kept in sync with scoreParser.ts constants */
 const PAGE_W = 1365;
 const PAGE_H = 1922;
-const STAFF_H_TENTHS = 40; // 4 staff-spaces × 10 tenths
+const STAFF_H_TENTHS = 40;
 
-/** Staff top-Y positions (tenths, from page top) for each part × system */
 const STAFF_TOPS: number[][] = [
-  [333, 445, 556],  // system 1
-  [785, 897, 1008], // system 2
+  [333, 445, 556],
+  [785, 897, 1008],
 ];
 const SYS_OF_MEASURE = (mi: number) => (mi < 4 ? 0 : 1);
+
+export const DEFAULT_CALIBRATION: CalibrationState = {
+  offsetX: 0, offsetY: 0, scaleX: 1, scaleY: 1, noteScale: 1,
+};
 
 export function drawAllNotes(
   ctx: CanvasRenderingContext2D,
@@ -200,16 +201,16 @@ export function drawAllNotes(
   threshold: number,
   canvasW: number,
   canvasH: number,
+  calibration: CalibrationState = DEFAULT_CALIBRATION,
 ): void {
   const sx = canvasW / PAGE_W;
   const sy = canvasH / PAGE_H;
 
-  // Note head radius in pixels (proportional to staff height)
-  const staffPx = STAFF_H_TENTHS * sy;
-  const rx = Math.max(3.5, staffPx * 0.22); // horizontal
-  const ry = Math.max(2.5, staffPx * 0.13); // vertical
+  const staffPx = STAFF_H_TENTHS * sy * calibration.noteScale;
+  const rx = Math.max(3.5, staffPx * 0.22);
+  const ry = Math.max(2.5, staffPx * 0.13);
   const stemLen = Math.max(12, staffPx * 0.88);
-  const lineSpacing = Math.max(2, staffPx * 0.25); // 10 tenths scaled
+  const lineSpacing = Math.max(2, staffPx * 0.25);
 
   ctx.clearRect(0, 0, canvasW, canvasH);
 
@@ -217,55 +218,54 @@ export function drawAllNotes(
     if (note.isRest) continue;
 
     const color = noteColor(note, threshold);
-    const cx = note.absX * sx;
-    const cy = note.absY * sy;
 
-    // Compute staff boundaries for ledger lines
-    const measureIdx = Number(note.measureNum) - 1;
+    // Apply calibration
+    const cx = applyCalib(note.absX * sx, calibration.scaleX, calibration.offsetX);
+    const cy = applyCalib(note.absY * sy, calibration.scaleY, calibration.offsetY);
+
+    // Staff boundaries for ledger lines (also calibrated)
+    const measureIdx = note.measureIndex;
     const sysIdx = SYS_OF_MEASURE(measureIdx);
     const rawStaffTop = STAFF_TOPS[sysIdx]?.[note.partIndex] ?? 0;
-    const staffTopPx = rawStaffTop * sy;
-    const staffBottomPx = (rawStaffTop + STAFF_H_TENTHS) * sy;
+    const staffTopPx = applyCalib(rawStaffTop * sy, calibration.scaleY, calibration.offsetY);
+    const staffBottomPx = applyCalib((rawStaffTop + STAFF_H_TENTHS) * sy, calibration.scaleY, calibration.offsetY);
 
-    // Ledger lines
     drawLedgerLines(ctx, cx, cy, staffTopPx, staffBottomPx, lineSpacing * 2, rx, color);
-
-    // Accidental
     drawAccidental(ctx, cx, cy, note.alter, ry, color);
 
     const open = note.noteType === 'whole' || note.noteType === 'half';
-
-    // Note head
     drawHead(ctx, cx, cy, rx, ry, color, open);
 
-    // Stem + flags
     const [tx, ty] = drawStem(ctx, cx, cy, rx, note.stemDir, stemLen, color);
     const fc = flagsForType(note.noteType);
-    if (fc > 0) {
-      drawFlags(ctx, tx, ty, note.stemDir, fc, rx, ry, color);
-    }
+    if (fc > 0) drawFlags(ctx, tx, ty, note.stemDir, fc, rx, ry, color);
   }
 }
 
-// ─── Hit-test: find nearest note to a canvas point ──────────────────────────
+// ─── Hit-test ────────────────────────────────────────────────────────────────
 export function findNoteAt(
   notes: NoteData[],
   px: number,
   py: number,
   canvasW: number,
   canvasH: number,
+  calibration: CalibrationState = DEFAULT_CALIBRATION,
   radius = 18,
 ): NoteData | null {
   const sx = canvasW / PAGE_W;
   const sy = canvasH / PAGE_H;
+
+  // Inverse-calibrate cursor position to raw coordinate space
+  const rawPx = inverseCalib(px, calibration.scaleX, calibration.offsetX);
+  const rawPy = inverseCalib(py, calibration.scaleY, calibration.offsetY);
 
   let best: NoteData | null = null;
   let bestDist = radius * radius;
 
   for (const note of notes) {
     if (note.isRest) continue;
-    const dx = note.absX * sx - px;
-    const dy = note.absY * sy - py;
+    const dx = note.absX * sx - rawPx;
+    const dy = note.absY * sy - rawPy;
     const d2 = dx * dx + dy * dy;
     if (d2 < bestDist) {
       bestDist = d2;

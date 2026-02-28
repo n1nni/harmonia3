@@ -1,4 +1,4 @@
-import type { NoteData, NoteType, StemDir, ScoreLayout } from '../types';
+import type { NoteData, NoteType, StemDir, ScoreLayout, PartInfo, ClefInfo, KeyInfo, TimeInfo } from '../types';
 
 // ─── Page / layout constants (from scores.json defaults) ─────────────────────
 const PAGE_W = 1365;
@@ -11,16 +11,6 @@ const STAFF_H = 40;
 
 /**
  * Staff top-Y positions (in tenths from page top) for each part × system.
- *
- * System 1 (measures 1–4):
- *   P1 top = TOP_MARGIN + top-system-distance  = 97 + 236 = 333
- *   P2 top = P1-bottom + staff-distance(P2)    = 373 + 72  = 445
- *   P3 top = P2-bottom + staff-distance(P3)    = 485 + 71  = 556
- *
- * System 2 (measures 5–8):
- *   P1 top = P3(sys1)-bottom + system-distance = 596 + 189 = 785
- *   P2 top = P1-bottom + staff-distance(P2)    = 825 + 72  = 897
- *   P3 top = P2-bottom + staff-distance(P3)    = 937 + 71  = 1008
  */
 const STAFF_TOPS: readonly [readonly number[], readonly number[]] = [
   [333, 445, 556], // system 1: [P1, P2, P3]
@@ -44,18 +34,6 @@ const STEP_NUM: Record<string, number> = {
   C: 0, D: 1, E: 2, F: 3, G: 4, A: 5, B: 6,
 };
 
-/**
- * Returns the Y offset (in tenths, positive = DOWN) of the note-head centre
- * relative to the staff top line.
- *
- *  Parts 1 & 2  →  G clef  clef-octave-change=-1  (octave / 8vb treble)
- *    Reference: G3 sits on staff line 2 (from bottom) = 30 tenths below top
- *    Formula:   yOffset = 155 − 5 × pitchNum    where pitchNum = octave×7 + stepNum
- *
- *  Part 3  →  F clef on line 4  (bass clef)
- *    Reference: F3 sits on staff line 4 (from bottom) = 10 tenths below top
- *    Formula:   yOffset = 130 − 5 × pitchNum
- */
 function pitchToYOffset(step: string, octave: number, partIndex: number): number {
   const p = octave * 7 + STEP_NUM[step];
   return partIndex === 2
@@ -64,15 +42,10 @@ function pitchToYOffset(step: string, octave: number, partIndex: number): number
 }
 
 // ─── Deterministic mock confidence ──────────────────────────────────────────
-/**
- * Returns a plausible OMR confidence in [0.52, 1.00].
- * Uses a hash-like formula so the same note always gets the same value.
- */
 function mockConfidence(partIdx: number, measureIdx: number, noteIdx: number): number {
   const seed = partIdx * 1000 + measureIdx * 100 + noteIdx;
   const x = Math.sin(seed * 127.1 + 311.7) * 43758.5453123;
-  const r = x - Math.floor(x); // uniform [0, 1)
-  // Skew toward higher values: most notes correctly recognised
+  const r = x - Math.floor(x);
   return 0.52 + 0.48 * Math.pow(r, 0.55);
 }
 
@@ -95,13 +68,24 @@ interface RawNote {
   stem?: RawStem;
   chord?: unknown;
   _default_x?: string;
-  // Finale XML-to-JSON uses "_attribute" keys with hyphens, but the actual
-  // keys depend on the converter. We handle both underscore and original.
+  [key: string]: unknown;
+}
+
+interface RawAttributes {
+  divisions?: string;
+  key?: { fifths?: string; mode?: string };
+  time?: { beats?: string; 'beat-type'?: string; 'senza-misura'?: unknown };
+  clef?: {
+    sign?: string;
+    line?: string;
+    'clef-octave-change'?: string;
+  };
   [key: string]: unknown;
 }
 
 interface RawMeasure {
   note?: RawNote | RawNote[];
+  attributes?: RawAttributes;
   _number?: string;
   _width?: string;
   [key: string]: unknown;
@@ -112,9 +96,20 @@ interface RawPart {
   [key: string]: unknown;
 }
 
+interface RawScorePart {
+  'part-name'?: { __text?: string } | string;
+  'score-instrument'?: { 'instrument-name'?: string };
+  _id?: string;
+  [key: string]: unknown;
+}
+
 interface RawScore {
   'score-partwise'?: {
     part?: RawPart | RawPart[];
+    'part-list'?: {
+      'score-part'?: RawScorePart | RawScorePart[];
+      [key: string]: unknown;
+    };
     [key: string]: unknown;
   };
 }
@@ -123,6 +118,7 @@ interface RawScore {
 export interface ParseResult {
   notes: NoteData[];
   layout: ScoreLayout;
+  parts: PartInfo[];
 }
 
 export function parseScore(json: RawScore): ParseResult {
@@ -130,10 +126,36 @@ export function parseScore(json: RawScore): ParseResult {
   if (!partwise) throw new Error('Not a score-partwise JSON');
 
   const rawParts = toArray(partwise.part);
+  const rawScoreParts = toArray(partwise['part-list']?.['score-part']);
   const notes: NoteData[] = [];
+  const parts: PartInfo[] = [];
 
   rawParts.forEach((part, partIdx) => {
     const measures = toArray(part.measure);
+
+    // Parse clef/key/time from the first measure's attributes
+    const firstAttrs = (measures[0] as RawMeasure | undefined)?.attributes ?? {};
+    const clef = parseClef(firstAttrs.clef);
+    const key = parseKey(firstAttrs.key);
+    const time = parseTime(firstAttrs.time);
+
+    // Part name
+    const rawSP = rawScoreParts[partIdx];
+    const nameRaw = rawSP?.['part-name'];
+    const name =
+      typeof nameRaw === 'string'
+        ? nameRaw
+        : (nameRaw as { __text?: string })?.__text ??
+          rawSP?.['score-instrument']?.['instrument-name'] ??
+          `Part ${partIdx + 1}`;
+
+    parts.push({
+      id: rawSP?._id ?? `P${partIdx + 1}`,
+      name,
+      clef,
+      key,
+      time,
+    });
 
     measures.forEach((measure, measureIdx) => {
       const mNum = String((measure as { _number?: string })._number ?? measureIdx + 1);
@@ -144,7 +166,7 @@ export function parseScore(json: RawScore): ParseResult {
       const rawNotes = toArray((measure as { note?: RawNote | RawNote[] }).note);
 
       rawNotes.forEach((rawNote, noteIdx) => {
-        if (!rawNote || rawNote.rest !== undefined) return; // skip rests
+        if (!rawNote || rawNote.rest !== undefined) return;
 
         const pitch = rawNote.pitch;
         if (!pitch) return;
@@ -155,14 +177,12 @@ export function parseScore(json: RawScore): ParseResult {
 
         const noteType = normaliseNoteType(String(rawNote.type ?? 'quarter'));
 
-        // x: note attribute uses key _default-x (hyphen) in the source JSON
         const noteX = Number(
           rawNote['_default-x'] ??
           rawNote._default_x ??
           0
         );
 
-        // stem direction
         const stemObj = rawNote.stem as (RawStem & Record<string, unknown>) | undefined;
         const stemText = String(stemObj?.__text ?? stemObj?.['__text'] ?? '').toLowerCase();
         const stemDir: StemDir =
@@ -190,7 +210,10 @@ export function parseScore(json: RawScore): ParseResult {
           confidence: mockConfidence(partIdx, measureIdx, noteIdx),
           partIndex: partIdx,
           measureNum: mNum,
+          measureIndex: measureIdx,
+          systemIndex: sysIdx,
           isRest: false,
+          status: 'unreviewed',
         });
       });
     });
@@ -199,6 +222,34 @@ export function parseScore(json: RawScore): ParseResult {
   return {
     notes,
     layout: { pageWidth: PAGE_W, pageHeight: PAGE_H },
+    parts,
+  };
+}
+
+// ─── Attribute parsers ────────────────────────────────────────────────────────
+function parseClef(raw: RawAttributes['clef']): ClefInfo {
+  if (!raw) return { sign: 'G', line: 2, octaveChange: 0 };
+  const sign = (String(raw.sign ?? 'G').toUpperCase()) as 'G' | 'F' | 'C';
+  const line = Number(raw.line ?? 2);
+  const octaveChange = Number(raw['clef-octave-change'] ?? 0);
+  return { sign, line, octaveChange };
+}
+
+function parseKey(raw: RawAttributes['key']): KeyInfo {
+  if (!raw) return { fifths: 0, mode: 'major' };
+  return {
+    fifths: Number(raw.fifths ?? 0),
+    mode: String(raw.mode ?? 'major'),
+  };
+}
+
+function parseTime(raw: RawAttributes['time']): TimeInfo {
+  if (!raw) return { beats: 4, beatType: 4, senzaMisura: false };
+  const isSenza = 'senza-misura' in raw;
+  return {
+    beats: raw.beats != null ? Number(raw.beats) : null,
+    beatType: raw['beat-type'] != null ? Number(raw['beat-type']) : null,
+    senzaMisura: isSenza,
   };
 }
 
@@ -222,4 +273,4 @@ function normaliseNoteType(raw: string): NoteType {
 }
 
 // Re-export layout constants for canvas renderer
-export { PAGE_W, PAGE_H, STAFF_H, TOP_MARGIN, LEFT_MARGIN };
+export { PAGE_W, PAGE_H, STAFF_H, TOP_MARGIN, LEFT_MARGIN, STAFF_TOPS };

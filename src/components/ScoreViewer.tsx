@@ -4,7 +4,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import type { NoteData } from '../types';
+import type { NoteData, CalibrationState } from '../types';
 import { drawAllNotes, findNoteAt } from '../utils/noteRenderer';
 import Tooltip from './Tooltip';
 
@@ -12,9 +12,21 @@ interface Props {
   imageUrl: string | null;
   notes: NoteData[];
   threshold: number;
+  calibration: CalibrationState;
+  isCalibrating: boolean;
+  onCalibrationClick: (px: number, py: number, canvasW: number, canvasH: number) => void;
+  onNoteClick: (note: NoteData) => void;
 }
 
-export default function ScoreViewer({ imageUrl, notes, threshold }: Props) {
+export default function ScoreViewer({
+  imageUrl,
+  notes,
+  threshold,
+  calibration,
+  isCalibrating,
+  onCalibrationClick,
+  onNoteClick,
+}: Props) {
   const imgRef = useRef<HTMLImageElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -22,7 +34,7 @@ export default function ScoreViewer({ imageUrl, notes, threshold }: Props) {
   const [hovered, setHovered] = useState<NoteData | null>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
-  // ── Redraw canvas whenever image size, notes, or threshold changes ────────
+  // ── Redraw canvas whenever image size, notes, threshold, or calibration changes
   const redraw = useCallback(() => {
     const img = imgRef.current;
     const canvas = canvasRef.current;
@@ -32,7 +44,6 @@ export default function ScoreViewer({ imageUrl, notes, threshold }: Props) {
     const h = img.clientHeight;
     if (w === 0 || h === 0) return;
 
-    // Match canvas logical resolution to rendered size (crisp at any zoom)
     const dpr = window.devicePixelRatio || 1;
     canvas.width = w * dpr;
     canvas.height = h * dpr;
@@ -41,8 +52,8 @@ export default function ScoreViewer({ imageUrl, notes, threshold }: Props) {
 
     const ctx = canvas.getContext('2d')!;
     ctx.scale(dpr, dpr);
-    drawAllNotes(ctx, notes, threshold, w, h);
-  }, [notes, threshold]);
+    drawAllNotes(ctx, notes, threshold, w, h, calibration);
+  }, [notes, threshold, calibration]);
 
   // Redraw on image load
   useEffect(() => {
@@ -54,7 +65,7 @@ export default function ScoreViewer({ imageUrl, notes, threshold }: Props) {
     return () => img.removeEventListener('load', onLoad);
   }, [redraw, imageUrl]);
 
-  // Redraw on threshold / notes change (image already loaded)
+  // Redraw on threshold / notes / calibration change
   useEffect(() => {
     if (imgRef.current?.complete) redraw();
   }, [redraw]);
@@ -76,14 +87,36 @@ export default function ScoreViewer({ imageUrl, notes, threshold }: Props) {
     const px = e.clientX - rect.left;
     const py = e.clientY - rect.top;
     setMousePos({ x: e.clientX, y: e.clientY });
-    setHovered(findNoteAt(notes, px, py, canvas.clientWidth, canvas.clientHeight));
+    setHovered(findNoteAt(notes, px, py, canvas.clientWidth, canvas.clientHeight, calibration));
   };
 
   const onMouseLeave = () => setHovered(null);
 
+  // ── Click handler (calibration or note edit) ──────────────────────────────
+  const onClick = (e: React.MouseEvent<HTMLCanvasElement>) => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const rect = canvas.getBoundingClientRect();
+    const px = e.clientX - rect.left;
+    const py = e.clientY - rect.top;
+
+    if (isCalibrating) {
+      onCalibrationClick(px, py, canvas.clientWidth, canvas.clientHeight);
+      return;
+    }
+
+    const hit = findNoteAt(notes, px, py, canvas.clientWidth, canvas.clientHeight, calibration);
+    if (hit) onNoteClick(hit);
+  };
+
+  const cursorClass = isCalibrating
+    ? 'cursor-crosshair'
+    : hovered
+      ? 'cursor-pointer'
+      : 'cursor-crosshair';
+
   return (
     <div className="flex flex-col gap-3">
-      {/* Viewer box */}
       <div
         ref={containerRef}
         className="relative rounded-xl overflow-hidden border border-slate-600 bg-slate-900
@@ -100,19 +133,27 @@ export default function ScoreViewer({ imageUrl, notes, threshold }: Props) {
             />
             <canvas
               ref={canvasRef}
-              className="absolute inset-0 cursor-crosshair"
+              className={`absolute inset-0 ${cursorClass}`}
               style={{ pointerEvents: 'all' }}
               onMouseMove={onMouseMove}
               onMouseLeave={onMouseLeave}
+              onClick={onClick}
             />
+            {isCalibrating && (
+              <div className="absolute top-3 left-3 right-3 bg-amber-950/80 border border-amber-700
+                              rounded-lg px-3 py-2 text-xs text-amber-300 text-center pointer-events-none">
+                Click where the score content begins (top-left corner)
+              </div>
+            )}
           </>
         ) : (
           <Placeholder />
         )}
       </div>
 
-      {/* Tooltip (portal-style fixed positioning) */}
-      {hovered && <Tooltip note={hovered} x={mousePos.x} y={mousePos.y} threshold={threshold} />}
+      {hovered && !isCalibrating && (
+        <Tooltip note={hovered} x={mousePos.x} y={mousePos.y} threshold={threshold} />
+      )}
     </div>
   );
 }
@@ -137,7 +178,7 @@ function Placeholder() {
       <div>
         <p className="text-slate-400 font-medium">No score image uploaded</p>
         <p className="text-slate-500 text-sm mt-1">
-          Upload a photo or scan of the original sheet music above to see the OMR overlay.
+          Upload a photo or scan of the original sheet music to see the OMR overlay.
         </p>
       </div>
     </div>
