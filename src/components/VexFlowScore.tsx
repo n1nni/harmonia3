@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useCallback } from 'react';
 import { Renderer, Stave, StaveNote, Voice, Formatter, Accidental, Beam, Stem } from 'vexflow';
-import type { NoteData, NoteCorrection, PartInfo } from '../types';
+import type { NoteData, NoteCorrection, PartInfo, ScoreLayout } from '../types';
 
 // ─── Duration → VexFlow duration string ────────────────────────────────────
 const DUR: Record<string, string> = {
@@ -21,9 +21,6 @@ const ACC: Record<number, string> = {
 };
 
 // ─── Layout constants ──────────────────────────────────────────────────────
-const NUM_SYSTEMS = 2;
-const NUM_PARTS = 3;
-const MEAS_PER_SYS = 4;
 const STAVE_SPACING = 90;   // px between stave tops within a system
 const SYSTEM_GAP = 50;      // extra gap between systems
 const MARGIN_X = 12;
@@ -32,51 +29,51 @@ const MARGIN_Y = 20;
 interface Props {
   notes: NoteData[];
   parts: PartInfo[];
+  layout: ScoreLayout;
   threshold: number;
   corrections: Map<string, NoteCorrection>;
 }
 
-export default function VexFlowScore({ notes, parts, threshold, corrections }: Props) {
+export default function VexFlowScore({ notes, parts, layout, threshold, corrections }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   const render = useCallback(() => {
     const el = containerRef.current;
-    if (!el || notes.length === 0) return;
+    if (!el || notes.length === 0 || layout.systems.length === 0) return;
 
-    // Clear previous render
     el.innerHTML = '';
 
+    const numParts = parts.length;
+    const numSystems = layout.systems.length;
     const width = el.clientWidth || 700;
-    const systemH = NUM_PARTS * STAVE_SPACING;
-    const totalH = MARGIN_Y + NUM_SYSTEMS * systemH + (NUM_SYSTEMS - 1) * SYSTEM_GAP + 40;
+    const systemH = numParts * STAVE_SPACING;
+    const totalH = MARGIN_Y + numSystems * systemH + (numSystems - 1) * SYSTEM_GAP + 40;
     const staveW = width - MARGIN_X * 2;
 
     const renderer = new Renderer(el, Renderer.Backends.SVG);
     renderer.resize(width, totalH);
     const ctx = renderer.getContext();
 
-    // Determine key spec from first part
-    const keyFifths = parts[0]?.key.fifths ?? -2;
+    const keyFifths = parts[0]?.key.fifths ?? 0;
     const keySpec = KEY_MAP[keyFifths] ?? 'C';
 
-    // Clef names for each part
     const clefNames = parts.map(p => {
       if (p.clef.sign === 'F') return 'bass';
       return 'treble';
     });
 
-    // 8vb annotation for parts with octave change
     const clefAnnotations = parts.map(p => {
       if (p.clef.octaveChange === -1) return '8vb';
       if (p.clef.octaveChange === 1) return '8va';
       return undefined;
     });
 
-    for (let sysIdx = 0; sysIdx < NUM_SYSTEMS; sysIdx++) {
+    for (let sysIdx = 0; sysIdx < numSystems; sysIdx++) {
+      const sys = layout.systems[sysIdx];
       const sysY = MARGIN_Y + sysIdx * (systemH + SYSTEM_GAP);
-      const measStart = sysIdx * MEAS_PER_SYS; // 0 or 4
+      const [measStart, measEnd] = sys.measureRange;
 
-      for (let partIdx = 0; partIdx < NUM_PARTS; partIdx++) {
+      for (let partIdx = 0; partIdx < numParts; partIdx++) {
         const staveY = sysY + partIdx * STAVE_SPACING;
 
         const stave = new Stave(MARGIN_X, staveY, staveW);
@@ -84,17 +81,15 @@ export default function VexFlowScore({ notes, parts, threshold, corrections }: P
         stave.addKeySignature(keySpec);
         stave.setContext(ctx).draw();
 
-        // Collect notes for this part in this system
         const partNotes = notes.filter(n =>
           n.partIndex === partIdx &&
           n.measureIndex >= measStart &&
-          n.measureIndex < measStart + MEAS_PER_SYS &&
+          n.measureIndex < measEnd &&
           !n.isRest
         );
 
         if (partNotes.length === 0) continue;
 
-        // Create VexFlow StaveNotes
         const vfNotes: StaveNote[] = [];
         for (const n of partNotes) {
           const corr = corrections.get(n.id);
@@ -104,10 +99,9 @@ export default function VexFlowScore({ notes, parts, threshold, corrections }: P
           const noteType = corr?.noteType ?? n.noteType;
           const status = corr?.status ?? n.status;
 
-          // For 8vb treble display, transpose sounding pitch up 1 octave for written
-          const displayOctave = (partIdx < 2 && parts[partIdx]?.clef.octaveChange === -1)
+          const displayOctave = (partIdx < numParts - 1 && parts[partIdx]?.clef.octaveChange === -1)
             ? octave + 1
-            : octave;
+            : (parts[partIdx]?.clef.sign === 'F' ? octave : (parts[partIdx]?.clef.octaveChange === -1 ? octave + 1 : octave));
 
           const dur = DUR[noteType] ?? 'q';
           const stemDir = n.stemDir === 'up' ? Stem.UP : Stem.DOWN;
@@ -119,19 +113,17 @@ export default function VexFlowScore({ notes, parts, threshold, corrections }: P
             clef: clefNames[partIdx],
           });
 
-          // Add accidentals
           if (alter !== 0 && ACC[alter]) {
             sn.addModifier(new Accidental(ACC[alter]));
           }
 
-          // Color by status / confidence
           let color: string;
           if (status === 'verified' || status === 'corrected') {
-            color = '#16a34a'; // green
+            color = '#16a34a';
           } else if (n.confidence >= threshold) {
-            color = '#2563eb'; // blue
+            color = '#2563eb';
           } else {
-            color = '#dc2626'; // red
+            color = '#dc2626';
           }
           sn.setStyle({ fillStyle: color, strokeStyle: color });
           sn.setStemStyle({ fillStyle: color, strokeStyle: color });
@@ -141,20 +133,17 @@ export default function VexFlowScore({ notes, parts, threshold, corrections }: P
 
         if (vfNotes.length === 0) continue;
 
-        // Auto-beam eighth notes and shorter
         let beams: Beam[] = [];
         try {
           beams = Beam.generateBeams(vfNotes);
         } catch {
-          // Beaming can fail on unusual note groupings — skip
+          // skip
         }
 
-        // Create voice in SOFT mode
         const voice = new Voice({ numBeats: 4, beatValue: 4 });
         voice.setMode(Voice.Mode.SOFT);
         voice.addTickables(vfNotes);
 
-        // Format & draw
         try {
           const noteStartX = stave.getNoteStartX();
           const noteEndX = stave.getNoteEndX();
@@ -166,14 +155,12 @@ export default function VexFlowScore({ notes, parts, threshold, corrections }: P
         }
       }
     }
-  }, [notes, parts, threshold, corrections]);
+  }, [notes, parts, layout, threshold, corrections]);
 
-  // Render on changes
   useEffect(() => {
     render();
   }, [render]);
 
-  // Re-render on container resize
   useEffect(() => {
     const el = containerRef.current;
     if (!el) return;
@@ -186,7 +173,7 @@ export default function VexFlowScore({ notes, parts, threshold, corrections }: P
     <div className="flex flex-col gap-3">
       <div
         ref={containerRef}
-        className="rounded-xl overflow-hidden border border-slate-600 bg-white min-h-[300px]"
+        className="rounded-xl overflow-auto border border-slate-600 bg-white min-h-[300px]"
       />
       {notes.length === 0 && (
         <div className="flex flex-col items-center gap-3 py-12 text-center">

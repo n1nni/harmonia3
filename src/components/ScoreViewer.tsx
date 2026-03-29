@@ -4,7 +4,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import type { NoteData, CalibrationState } from '../types';
+import type { NoteData, CalibrationState, ScoreLayout } from '../types';
 import { drawAllNotes, findNoteAt } from '../utils/noteRenderer';
 import Tooltip from './Tooltip';
 
@@ -12,6 +12,7 @@ interface Props {
   imageUrl: string | null;
   notes: NoteData[];
   threshold: number;
+  layout: ScoreLayout;
   calibration: CalibrationState;
   isCalibrating: boolean;
   onCalibrationClick: (px: number, py: number, canvasW: number, canvasH: number) => void;
@@ -22,6 +23,7 @@ export default function ScoreViewer({
   imageUrl,
   notes,
   threshold,
+  layout,
   calibration,
   isCalibrating,
   onCalibrationClick,
@@ -52,8 +54,8 @@ export default function ScoreViewer({
 
     const ctx = canvas.getContext('2d')!;
     ctx.scale(dpr, dpr);
-    drawAllNotes(ctx, notes, threshold, w, h, calibration);
-  }, [notes, threshold, calibration]);
+    drawAllNotes(ctx, notes, threshold, w, h, layout, calibration);
+  }, [notes, threshold, layout, calibration]);
 
   // Redraw on image load
   useEffect(() => {
@@ -87,7 +89,7 @@ export default function ScoreViewer({
     const px = e.clientX - rect.left;
     const py = e.clientY - rect.top;
     setMousePos({ x: e.clientX, y: e.clientY });
-    setHovered(findNoteAt(notes, px, py, canvas.clientWidth, canvas.clientHeight, calibration));
+    setHovered(findNoteAt(notes, px, py, canvas.clientWidth, canvas.clientHeight, layout, calibration));
   };
 
   const onMouseLeave = () => setHovered(null);
@@ -105,7 +107,7 @@ export default function ScoreViewer({
       return;
     }
 
-    const hit = findNoteAt(notes, px, py, canvas.clientWidth, canvas.clientHeight, calibration);
+    const hit = findNoteAt(notes, px, py, canvas.clientWidth, canvas.clientHeight, layout, calibration);
     if (hit) onNoteClick(hit);
   };
 

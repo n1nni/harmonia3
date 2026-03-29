@@ -20,9 +20,23 @@ export interface NoteData {
   status: NoteStatus;
 }
 
+export interface SystemLayout {
+  /** Staff top Y positions (tenths from page-stack top) for each part in this system. */
+  staffTops: number[];
+  /** Global measure indices in this system [startInclusive, endExclusive). */
+  measureRange: [number, number];
+  /** Which page this system is on (0-based). */
+  page: number;
+}
+
 export interface ScoreLayout {
   pageWidth: number;
   pageHeight: number;
+  /** Total height in tenths (pageHeight * numPages for stacked multi-page). */
+  totalHeight: number;
+  numPages: number;
+  numParts: number;
+  systems: SystemLayout[];
 }
 
 export interface CalibrationState {

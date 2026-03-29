@@ -5,8 +5,9 @@ import CalibrationPanel from './components/CalibrationPanel';
 import ScoreViewer from './components/ScoreViewer';
 import VexFlowScore from './components/VexFlowScore';
 import EditNoteModal from './components/EditNoteModal';
-import { parseScore, PAGE_W, PAGE_H, LEFT_MARGIN, TOP_MARGIN } from './utils/scoreParser';
-import type { NoteData, PartInfo, CalibrationState, NoteCorrection } from './types';
+import { digitizeImage } from './utils/apiClient';
+import { parseScore } from './utils/scoreParser';
+import type { NoteData, PartInfo, ScoreLayout, CalibrationState, NoteCorrection } from './types';
 
 const DEFAULT_CALIB: CalibrationState = {
   offsetX: 0, offsetY: 0, scaleX: 1, scaleY: 1, noteScale: 1,
@@ -18,7 +19,11 @@ export default function App() {
   const [threshold, setThreshold] = useState(0.75);
   const [notes, setNotes] = useState<NoteData[]>([]);
   const [parts, setParts] = useState<PartInfo[]>([]);
+  const [layout, setLayout] = useState<ScoreLayout>({
+    pageWidth: 1365, pageHeight: 1922, totalHeight: 1922, numPages: 1, numParts: 3, systems: [],
+  });
   const [loadError, setLoadError] = useState<string | null>(null);
+  const [isDigitizing, setIsDigitizing] = useState(false);
 
   // ── Calibration ─────────────────────────────────────────────────────────
   const [calibration, setCalibration] = useState<CalibrationState>(DEFAULT_CALIB);
@@ -45,28 +50,26 @@ export default function App() {
     [notes, corrections],
   );
 
-  // ── Load scores.json on startup ─────────────────────────────────────────
-  useEffect(() => {
-    fetch('/scores.json')
-      .then(r => {
-        if (!r.ok) throw new Error(`HTTP ${r.status}`);
-        return r.json();
-      })
-      .then(json => {
-        const result = parseScore(json);
-        setNotes(result.notes);
-        setParts(result.parts);
-      })
-      .catch(err => {
-        console.error('Failed to load scores.json:', err);
-        setLoadError(String(err));
-      });
-  }, []);
-
-  // ── Image upload ────────────────────────────────────────────────────────
-  const handleUpload = useCallback((file: File) => {
+  // ── Image upload → send to OMR API → parse response ───────────────────
+  const handleUpload = useCallback(async (file: File) => {
     if (imageUrl) URL.revokeObjectURL(imageUrl);
     setImageUrl(URL.createObjectURL(file));
+    setLoadError(null);
+    setIsDigitizing(true);
+    setCorrections(new Map());
+
+    try {
+      const apiResponse = await digitizeImage(file);
+      const result = parseScore(apiResponse);
+      setNotes(result.notes);
+      setParts(result.parts);
+      setLayout(result.layout);
+    } catch (err) {
+      console.error('OMR API error:', err);
+      setLoadError(String(err));
+    } finally {
+      setIsDigitizing(false);
+    }
   }, [imageUrl]);
 
   useEffect(() => {
@@ -77,9 +80,10 @@ export default function App() {
   const handleCalibrationClick = useCallback(
     (px: number, py: number, canvasW: number, canvasH: number) => {
       // User clicked where the score top-left corner is in the image.
-      // Compute offset so that note positions match this origin.
-      const refRawX = (LEFT_MARGIN / PAGE_W) * canvasW;
-      const refRawY = (TOP_MARGIN / PAGE_H) * canvasH;
+      const LEFT_MARGIN = 130; // standard MusicXML margin
+      const TOP_MARGIN = 97;
+      const refRawX = (LEFT_MARGIN / layout.pageWidth) * canvasW;
+      const refRawY = (TOP_MARGIN / layout.totalHeight) * canvasH;
       setCalibration(prev => ({
         ...prev,
         offsetX: px - refRawX * prev.scaleX,
@@ -200,9 +204,19 @@ export default function App() {
             </div>
           )}
 
+          {isDigitizing && (
+            <div className="rounded-xl border border-blue-800 bg-blue-950/50 p-4 text-sm text-blue-300 flex items-center gap-2">
+              <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+              </svg>
+              Digitizing score via OMR API...
+            </div>
+          )}
+
           {loadError && (
             <div className="rounded-xl border border-red-800 bg-red-950/50 p-4 text-sm text-red-300">
-              <strong>Error loading score:</strong> {loadError}
+              <strong>OMR API error:</strong> {loadError}
             </div>
           )}
         </aside>
@@ -218,6 +232,7 @@ export default function App() {
             imageUrl={imageUrl}
             notes={effectiveNotes}
             threshold={threshold}
+            layout={layout}
             calibration={calibration}
             isCalibrating={isCalibrating}
             onCalibrationClick={handleCalibrationClick}
@@ -235,6 +250,7 @@ export default function App() {
           <VexFlowScore
             notes={effectiveNotes}
             parts={parts}
+            layout={layout}
             threshold={threshold}
             corrections={corrections}
           />

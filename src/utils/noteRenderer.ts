@@ -1,4 +1,4 @@
-import type { NoteData, NoteType, StemDir, CalibrationState } from '../types';
+import type { NoteData, NoteType, StemDir, CalibrationState, ScoreLayout } from '../types';
 
 // ─── Colours ─────────────────────────────────────────────────────────────────
 export const COLOR_ABOVE    = '#2563eb'; // blue-600  – high confidence
@@ -169,42 +169,33 @@ function drawLedgerLines(
 }
 
 // ─── Calibration helper ──────────────────────────────────────────────────────
-/** Apply calibration to a raw canvas coordinate. */
 function applyCalib(raw: number, scale: number, offset: number): number {
   return raw * scale + offset;
 }
 
-/** Inverse-calibrate: convert a canvas pixel back to raw coordinate space. */
 function inverseCalib(px: number, scale: number, offset: number): number {
   return (px - offset) / scale;
 }
 
-// ─── Main draw function ───────────────────────────────────────────────────────
-
-const PAGE_W = 1365;
-const PAGE_H = 1922;
-const STAFF_H_TENTHS = 40;
-
-const STAFF_TOPS: number[][] = [
-  [333, 445, 556],
-  [785, 897, 1008],
-];
-const SYS_OF_MEASURE = (mi: number) => (mi < 4 ? 0 : 1);
-
+// ─── Default calibration ─────────────────────────────────────────────────────
 export const DEFAULT_CALIBRATION: CalibrationState = {
   offsetX: 0, offsetY: 0, scaleX: 1, scaleY: 1, noteScale: 1,
 };
 
+const STAFF_H_TENTHS = 40;
+
+// ─── Main draw function ───────────────────────────────────────────────────────
 export function drawAllNotes(
   ctx: CanvasRenderingContext2D,
   notes: NoteData[],
   threshold: number,
   canvasW: number,
   canvasH: number,
+  layout: ScoreLayout,
   calibration: CalibrationState = DEFAULT_CALIBRATION,
 ): void {
-  const sx = canvasW / PAGE_W;
-  const sy = canvasH / PAGE_H;
+  const sx = canvasW / layout.pageWidth;
+  const sy = canvasH / layout.totalHeight;
 
   const staffPx = STAFF_H_TENTHS * sy * calibration.noteScale;
   const rx = Math.max(3.5, staffPx * 0.22);
@@ -219,14 +210,12 @@ export function drawAllNotes(
 
     const color = noteColor(note, threshold);
 
-    // Apply calibration
     const cx = applyCalib(note.absX * sx, calibration.scaleX, calibration.offsetX);
     const cy = applyCalib(note.absY * sy, calibration.scaleY, calibration.offsetY);
 
-    // Staff boundaries for ledger lines (also calibrated)
-    const measureIdx = note.measureIndex;
-    const sysIdx = SYS_OF_MEASURE(measureIdx);
-    const rawStaffTop = STAFF_TOPS[sysIdx]?.[note.partIndex] ?? 0;
+    // Staff boundaries for ledger lines
+    const sys = layout.systems[note.systemIndex];
+    const rawStaffTop = sys?.staffTops[note.partIndex] ?? 0;
     const staffTopPx = applyCalib(rawStaffTop * sy, calibration.scaleY, calibration.offsetY);
     const staffBottomPx = applyCalib((rawStaffTop + STAFF_H_TENTHS) * sy, calibration.scaleY, calibration.offsetY);
 
@@ -249,13 +238,13 @@ export function findNoteAt(
   py: number,
   canvasW: number,
   canvasH: number,
+  layout: ScoreLayout,
   calibration: CalibrationState = DEFAULT_CALIBRATION,
   radius = 18,
 ): NoteData | null {
-  const sx = canvasW / PAGE_W;
-  const sy = canvasH / PAGE_H;
+  const sx = canvasW / layout.pageWidth;
+  const sy = canvasH / layout.totalHeight;
 
-  // Inverse-calibrate cursor position to raw coordinate space
   const rawPx = inverseCalib(px, calibration.scaleX, calibration.offsetX);
   const rawPy = inverseCalib(py, calibration.scaleY, calibration.offsetY);
 
